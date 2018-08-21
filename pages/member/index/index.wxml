@@ -17,7 +17,7 @@
     </view>
     <view>
       <text>{{nickname?nickname:'请授权'}}</text>
-      <image src="../../image/hy01.png"></image>
+      <image src="https://lg-8di92cg8-1256691104.cos.ap-shanghai.myqcloud.com/hy01.png"></image>
       <text>我要升级></text>
     </view>
   </view>

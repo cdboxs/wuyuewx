@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/member/index/index",
     "pages/index/index",
     "pages/template/index",
     "pages/exercise/index",
@@ -8,7 +7,9 @@
     "pages/starSpace/index",
     "pages/components/dialog/index",
     "pages/newInformation/index",
-    "pages/member/server/index"
+    "pages/member/index/index",
+    "pages/member/server/index",
+    "pages/member/address/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
