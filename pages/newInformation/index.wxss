@@ -1,0 +1,31 @@
+/* pages/newInformation/index.wxss */
+
+.newInformation {
+  width: 96%;
+  padding:2%;
+  overflow: hidden;
+}
+
+.newInformation image {
+  width: 100%;
+}
+
+.newInformation text {
+  display: block;
+}
+
+.newInformation .newsTitle {
+  color: #6e7b8b;
+  font-size: 36rpx;
+  text-align: left;
+  padding: 20rpx 0;
+}
+
+.newInformation .newsTime {
+  color: #6e7b8b;
+  font-size: 30rpx;
+  text-align: center;
+  padding-bottom: 30rpx;
+  margin: 0 0 30rpx 0;
+  border-bottom: 1px solid #eee;
+}

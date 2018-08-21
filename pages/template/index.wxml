@@ -1,0 +1,160 @@
+<!--pages/template/index.wxml-->
+<!--行情列表模板  -->
+<template name="hqList">
+
+  <view class='dataList' data-star_id='{{star_id}}' data-stock_id="{{stock_id}}" bindtap="goQuotation">
+    <view>
+      <image mode='aspectFit' lazy-load="true" wx:if="{{photo}}" src='{{urlPre}}{{photo}}'></image>
+      <view>
+        <text>{{name}}</text>
+        <text class='blue'>{{flag}}</text>
+        <text>{{code}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{(price-closing_price)>0}}" class="red">{{price}}</view>
+    <view wx:elif="{{(price-closing_price)<0}}" class="green">{{price}}</view>
+    <view wx:else class="gray">{{price}}</view>
+
+    <view wx:if="{{(price-closing_price)>0}}" class="red">{{floating}}%</view>
+    <view wx:elif="{{(price-closing_price)<0}}" class="green">{{floating}}%</view>
+    <view wx:else class="gray">{{floating}}%</view>
+  </view>
+
+</template>
+
+<!--论坛 -->
+<template name="forum">
+  <view class='forum'>
+    <view class='hPic'>
+      <image wx:if="{{photo}}" lazy-load="true" src='{{urlPre}}{{photo}}'></image>
+    </view>
+    <view class='forumDetails'>
+      <view class='fd-header'>
+        <view>
+          <text class='blue'>{{nickname}}</text>
+          <text class='gray'>{{create_date}}</text>
+        </view>
+        <view class='goodMessage'>
+          <view>
+            <image src='../image/good.png'></image>
+            <text>25</text>
+          </view>
+          <view>
+            <image src='../image/discuss.png'></image>
+            <text>10010</text>
+          </view>
+        </view>
+      </view>
+      <view class='fd-text'>{{content}}</view>
+      <view class='fd-goods'>
+        <image src='../image/good.png'></image>
+        <text>cdboxs、</text>
+        <text>null、</text>
+        <text>cdboxs、</text>
+        <text>null、</text>
+        <text>cdboxs、</text>
+        <text>null、</text>
+        <text>cdboxs、</text>
+        <text>null、</text>
+      </view>
+      <view class='fd-list'>
+        <view>
+          <text class='blue'>丽水按</text>回复
+          <text class='blue'>cdboxs</text>:
+          <text>回复的内容回复的内容回复的内容回复的内容回复的内容回复的内容回复的内容回复的内容回复的内容回复的内容回复的内容回复的内容回复的内容回复的内容回复的内容</text>
+        </view>
+        <view>
+          <text class='blue'>丽水按</text>回复
+          <text class='blue'>cdboxs</text>:
+          <text>回复的内容</text>
+        </view>
+        <view>
+          <text class='blue'>丽水按</text>回复
+          <text class='blue'>cdboxs</text>:
+          <text>回复的内容</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<!--最新资讯  -->
+<template name="information">
+  <view class='information' data-id="{{id}}" bindtap='informationDetail'>
+    <view>
+      <text>{{title}}</text>
+      <text>{{create_date}}</text>
+    </view>
+    <view>
+      <image wx:if="{{url}}" src='{{urlPre}}{{url}}' mode='aspectFill' lazy-load="true"></image>
+    </view>
+  </view>
+</template>
+
+<!--个人百科-->
+<template name="Personal">
+  <view class='Personal'>
+    <view>
+      <text class='title'>个人简介</text>
+      <text>姓名：{{name}}</text>
+      <text wx:if="{{sex==1}}">性别：男</text>
+      <text wx:elif="{{sex==0}}">性别：女</text>
+      <text>国籍：{{countries_name}}</text>
+      <text>民族：{{nation_name}}</text>
+      <text>出生年月：{{birth_date}}</text>
+    </view>
+    <view>
+      <text class='title'>个人成就</text>
+      <text>{{experience}}</text>
+    </view>
+  </view>
+</template>
+<!--公告  -->
+<template name="Notice">
+  <view>
+    <text>{{create_date}}</text>
+    <text>行权</text>
+    <text>{{name}}的时间被卖出{{total_num}}秒，当前流通时间{{totalSecs}}秒</text>
+  </view>
+</template>
+
+<!--二级导航 备用 -->
+<template name="subTabBar">
+  <view class='subTabBar'>
+    <view>
+      <image src='../image/hqnav1.png'></image>
+      <text>买入</text>
+    </view>
+    <view>
+      <image src='../image/hqnav2.png'></image>
+      <text>转让</text>
+    </view>
+    <view bindtap='addRemove'>
+      <image src='../image/add.png'></image>
+      <text>{{addremoveStatus}}</text>
+    </view>
+    <view bindtap="">
+      <image src='../image/xq.png'></image>
+      <text>行权</text>
+    </view>
+    <view>
+      <image src='../image/kj.png'></image>
+      <text>专属空间</text>
+    </view>
+  </view>
+</template>
+<!-- //支付密码 -->
+<template name="sixPayPwd">
+  <view class='payPwd'>
+    <text class='payPwdTitle'>请输入您的支付密码</text>
+    <view class='payPwdInput'>
+      <block wx:for="{{6}}" wx:key="key">
+        <input type='password' value='{{getPwd[index]}}' maxlength='1' disabled='true' bindtap='showkeyboard'></input>
+      </block>
+    </view>
+    <view class='payBtn'>
+      <button bindtap='yyCancel'>取消</button>
+      <button bindtap='yyConfirm'>确定</button>
+    </view>
+  </view>
+</template>

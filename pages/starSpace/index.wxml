@@ -1,0 +1,71 @@
+<!--pages/starSpace/index.wxml 明星专属空间-->
+<import src="../template/index.wxml" />
+<view class='starSpace'>
+  <view class='starPic'><image wx:if="{{starInfo.photo}}" src='{{urlPre}}{{starInfo.photo}}' mode='widthFix' lazy-load="true"></image></view>
+  <view class='starAbout'>
+    <text>最新价：{{price}}元/秒</text>
+    <view>
+      <image src='../image/mr.png'></image>
+      <text>立即买入</text>
+    </view>
+  </view>
+</view>
+
+<view class='quotation_four'>
+  <view class='four_nav'>
+    
+    <text style="{{fourSelected==1?'background:#76b5fc;color:#fff;':''}}" data-selected="1" bindtap='fourSwiper'>最新资讯</text>
+    <text style="{{fourSelected==2?'background:#76b5fc;color:#fff;':''}}" data-selected="2" bindtap='fourSwiper'>个人百科</text>
+    <text style="{{fourSelected==3?'background:#76b5fc;color:#fff;':''}}" data-selected="3" bindtap='fourSwiper'>明星同款</text>
+    <text style="{{fourSelected==4?'background:#76b5fc;color:#fff;':''}}" data-selected="4" bindtap='fourSwiper'>明星道具</text>
+  </view>
+    <!-- 最新资讯 -->
+  <view class='four_detail'  wx:if="{{fourSelected==1?true:false}}">
+      <block wx:for="{{information}}" wx:key="key">
+        <template is="information" data="{{urlPre,...item}}"></template>
+      </block>
+  </view>
+  <!-- 个人百科 -->
+  <view class='four_detail' wx:if="{{fourSelected==2?true:false}}">
+      <template is="Personal" data="{{...Personal}}"></template>
+  </view>
+  <!-- 论坛 -->
+  <view class='four_detail' style='height:{{scrollviewHeight-50}}px;' wx:if="{{fourSelected==3?true:false}}">
+   <scroll-view  style='height:{{scrollviewHeight-50}}px;' scroll-y lower-threshold="20" bindscrolltolower="getMoreData">
+      <block wx:for="{{forum}}" wx:key="key">
+        <template is="forum" data="{{urlPre,...item}}"></template>
+      </block>
+    </scroll-view>
+  </view>
+
+  <!-- 公告 -->
+  <view class='four_detail' style='height:{{scrollviewHeight-50}}px;' wx:if="{{fourSelected==4?true:false}}">
+    <scroll-view class='Notice' style='height:{{scrollviewHeight-50}}px;' scroll-y lower-threshold="20" bindscrolltolower="">
+      <block wx:for="{{listData}}" wx:key="key">
+        <template is="Notice" data="{{...item}}"></template>
+      </block>
+    </scroll-view>
+  </view>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

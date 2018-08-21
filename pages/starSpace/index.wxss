@@ -1,0 +1,155 @@
+/* pages/starSpace/index.wxss */
+
+.starSpace{
+  width:94%;
+  margin:0 auto;
+}
+.starPic{
+  width:100%;
+  margin:0 auto;
+  overflow: hidden;
+}
+.starPic image{
+  display: block;
+  width:100%;
+}
+.starAbout{
+  width:100%;
+  height:88rpx;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30rpx;
+}
+.starAbout text:first-child{
+  color:red;
+  font-weight: bold;
+}
+.starAbout view{
+   display: flex;
+   align-items: center;
+}
+.starAbout view text{
+  color:#555;
+  font-size: 28rpx;
+}
+.starAbout image{
+  width:40rpx;
+  height:40rpx;
+  margin-right: 10rpx;
+}
+
+.quotation_four .four_nav {
+  height: 100rpx;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 30rpx;
+}
+
+.quotation_four .four_nav text {
+  display: block;
+  width: 22%;
+  padding: 5rpx 20rpx;
+  box-sizing: border-box;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.quotation_four .four_detail {
+  width: 100%;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+
+.Personal {
+  width: 94%;
+  overflow: hidden;
+  color: #777;
+  margin: 0 auto;
+  padding-bottom:50px;
+}
+
+.Personal text {
+  border: 0 none;
+  display: block;
+  width: 100%;
+  font-size: 30rpx;
+  padding:10rpx 0;
+}
+
+.Personal view text:nth-of-type(1) {
+  color: #333;
+  font-size: 32rpx;
+  margin: 35rpx 0;
+}
+
+.information {
+  width: 94%;
+  overflow: hidden;
+  color: #777;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.information view {
+  padding: 25rpx 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 30rpx;
+  box-sizing: border-box;
+}
+
+.information view:nth-of-type(1) {
+  width: 70%;
+}
+
+.information view:nth-of-type(2) {
+  width: 20%;
+}
+
+.information view image {
+  width: 67px;
+  height: 67px;
+}
+
+.information view text:nth-of-type(2) {
+  color: #76b5fc;
+  padding-left: 20rpx;
+}
+
+.information view text:last-child {
+  display: block;
+  width: 100%;
+  padding-top: 10rpx;
+  font-size: 28rpx;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

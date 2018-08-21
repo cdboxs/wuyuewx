@@ -1,0 +1,94 @@
+<!--pages/member/index.wxml 个人中心-->
+<view class='mask' wx:if="{{maskState}}" style='width:{{width}}px;height:{{height}}px;'>
+  <view class='mask_layer'></view>
+  <view class='maskInfo'>
+    <view class='getAuthorization'>
+      <image src='../../image/logo.jpg'></image>
+      <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo='getUserInfo'>立即登陆</button>
+    </view>
+  </view>
+</view>
+<!--头像区域开始-->
+<view class="usertop">
+  <image src='../../image/userbg.jpg' class='usertopBG'></image>
+  <view class='usertopInfos'>
+    <view>
+      <image src="{{photo?photo:'../../image/mrtx.jpg'}}"></image>
+    </view>
+    <view>
+      <text>{{nickname?nickname:'请授权'}}</text>
+      <image src="../../image/hy01.png"></image>
+      <text>我要升级></text>
+    </view>
+  </view>
+</view>
+
+<!--订单开始
+<view class="user_order">
+  <view class="user_o_t">
+    <text>商品订单</text>
+    <text>全部订单</text>
+  </view>
+  <view class="user_o_menu">
+    <view>
+      <image src='../../image/user_ico_1.png'></image>
+      <text>待付款</text>
+    </view>
+    <view>
+      <image src='../../image/user_ico_2.png'></image>
+      <text>待发货</text>
+    </view>
+    <view>
+      <image src='../../image/user_ico_3.png'></image>
+      <text>待收货</text>
+    </view>
+    <view>
+      <image src='../../image/user_ico_4.png'></image>
+      <text>已完成</text>
+    </view>
+  </view>
+</view>
+-->
+<!--主菜单-->
+<view class='user_menu'>
+  <view bindtap=''>
+    <image src='../../image/icon_zc.png'></image>
+    <text>我的资产</text>
+    <image src='../../image/more.png'></image>
+  </view>
+  <view>
+    <image src='../../image/icon_shdz.png'></image>
+    <text>地址管理</text>
+    <image src='../../image/more.png'></image>
+  </view>
+  <view>
+    <image src='../../image/tuandui.png'></image>
+    <text>我的团队</text>
+    <image src='../../image/more.png'></image>
+  </view>
+  <view>
+    <image src='../../image/guanzhu.png'></image>
+    <text>我的关注</text>
+    <image src='../../image/more.png'></image>
+  </view>
+  <view>
+    <image src='../../image/anquan.png'></image>
+    <text>账号安全</text>
+    <image src='../../image/more.png'></image>
+  </view>
+</view>
+
+<view class='user_menu'>
+<navigator url="../server/index">
+  <view>
+    <image src='../../image/icon_bzzx.png'></image>
+    <text>服务中心</text>
+    <image src='../../image/more.png'></image>
+  </view>
+</navigator>  
+  <view>
+    <image src='../../image/icon_lxkf.png'></image>
+    <text>联系客服</text>
+    <image src='../../image/more.png'></image>
+  </view>
+</view>

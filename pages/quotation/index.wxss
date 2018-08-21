@@ -1,0 +1,318 @@
+/* pages/quotation/index.wxss */
+
+page {
+  margin-bottom: 50px;
+  background: #f0f3fc;
+}
+
+.quotation_one {
+  width: 100%;
+  height: 180rpx;
+  margin: 10rpx auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.quotation_one view {
+  color: #666;
+  font-size: 32rpx;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.quotation_one view:first-child {
+  width: 40%;
+}
+
+.quotation_one view:last-child {
+  width: 58.8%;
+}
+
+.quotation_one .one_left {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.quotation_one .one_left view {
+  width: 100%;
+  text-align: left;
+  padding: 10rpx 30rpx 0 80rpx;
+  box-sizing: border-box;
+}
+
+.quotation_one .one_left view:last-child text {
+  padding-right: 30rpx;
+  font-size: 27rpx;
+}
+
+.quotation_one .one_right {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.quotation_one .one_right text {
+  display: block;
+  width: 50%;
+  text-align: left;
+  margin-bottom: 10rpx;
+  padding-left: 25rpx;
+  box-sizing: border-box;
+}
+
+.quotation_two {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  background: #fff;
+  padding: 25rpx 0 0;
+}
+
+.quotation_two text {
+  display: block;
+  width: 33.33%;
+  color: #666;
+  text-align: left;
+  font-size: 25rpx;
+  padding: 0 0 25rpx 25rpx;
+  box-sizing: border-box;
+}
+
+.quotation_three .three_nav {
+  height: 100rpx;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 30rpx;
+}
+
+.quotation_three .three_nav text {
+  display: block;
+  width: 30%;
+  padding: 5rpx 20rpx;
+  box-sizing: border-box;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.quotation_three .three_detail {
+  width: 100%;
+  height: 845rpx;
+  padding: 30rpx 0;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.quotation_four .four_nav {
+  height: 100rpx;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 30rpx;
+}
+
+.quotation_four .four_nav text {
+  display: block;
+  width: 22%;
+  padding: 5rpx 20rpx;
+  box-sizing: border-box;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.quotation_four .four_detail {
+  width: 100%;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.Notice {
+  width: 94%;
+  overflow: hidden;
+  color: #777;
+  margin: 0 auto;
+}
+
+.Notice view {
+  padding: 25rpx 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 30rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+}
+
+.Notice view text:nth-of-type(2) {
+  color: #76b5fc;
+  padding-left: 20rpx;
+}
+
+.Notice view text:last-child {
+  display: block;
+  width: 100%;
+  padding-top: 10rpx;
+  font-size: 28rpx;
+}
+
+.Personal {
+  width: 94%;
+  overflow: hidden;
+  color: #777;
+  margin: 0 auto;
+  padding-bottom:50px;
+}
+
+.Personal text {
+  border: 0 none;
+  display: block;
+  width: 100%;
+  font-size: 30rpx;
+  padding:10rpx 0;
+}
+
+.Personal view text:nth-of-type(1) {
+  color: #333;
+  font-size: 32rpx;
+  margin: 35rpx 0;
+}
+
+.information {
+  width: 94%;
+  overflow: hidden;
+  color: #777;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.information view {
+  padding: 25rpx 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 30rpx;
+  box-sizing: border-box;
+}
+
+.information view:nth-of-type(1) {
+  width: 70%;
+}
+
+.information view:nth-of-type(2) {
+  width: 20%;
+}
+
+.information view image {
+  width: 67px;
+  height: 67px;
+}
+
+.information view text:nth-of-type(2) {
+  color: #76b5fc;
+  padding-left: 20rpx;
+}
+
+.information view text:last-child {
+  display: block;
+  width: 100%;
+  padding-top: 10rpx;
+  font-size: 28rpx;
+}
+
+/* 论坛 */
+.forum{
+  width:96%;
+  margin:0 auto;
+  overflow: hidden;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  border-bottom:1rpx solid #eee;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+.forum .hPic image{
+  width:120rpx;
+  height:120rpx;
+  
+}
+.forumDetails{
+  width: 81%;
+  margin-left:2%;
+}
+.forumDetails .fd-header{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+.forumDetails .fd-header view{
+  height:50rpx;
+   display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+
+.forumDetails .fd-header text{
+  font-size: 30rpx;
+}
+.forumDetails .fd-header .goodMessage{
+  
+  display: flex;
+  flex-flow: row wrap;
+  justify-content:space-between;
+}
+.forumDetails .fd-header .goodMessage text{
+  color:#888888;
+ font-size: 24rpx;
+}
+.forumDetails .fd-header .goodMessage image,.fd-goods image{
+  width:14px;
+  height: 14px;
+  margin:0 10rpx;
+}
+
+.fd-text{
+  color:#717171;
+  font-size: 26rpx;
+  padding:10rpx 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+.fd-goods{
+  color:#888;
+  font-size: 26rpx;
+  background: #edf5fb;
+  padding:10rpx;
+  box-sizing: border-box;
+  border-bottom:1rpx solid #fff;
+}
+.fd-list{
+  color:#555;
+  font-size: 26rpx;
+  background: #edf5fb;
+  padding:0 10rpx;
+  box-sizing: border-box;
+}
+.fd-list view{
+  width:100%;
+  padding:10rpx  0;
+}

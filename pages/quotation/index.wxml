@@ -1,0 +1,101 @@
+<!--pages/quotation/index.wxml 行情二级页-->
+<import src="../template/index.wxml" />
+<view class='quotation_one'>
+  <view class='one_left'>
+    <view>{{Qonel.price}}</view>
+    <view>
+      <text>{{Qonel.cha_price}}</text>
+      <text>{{Qonel.floating}}%</text>
+    </view>
+  </view>
+  <view class='one_right'>
+    <text>最高：{{Qoner.highestPrice}}</text>
+    <text>今开：{{Qoner.nowPrice}}</text>
+    <text>最低：{{Qoner.floorPrice}}</text>
+    <text>换手：{{Qoner.huanshou}}</text>
+  </view>
+</view>
+<view class='quotation_two'>
+  <text>均价：{{Qoner.junjia}}元/秒</text>
+  <text>最新：{{Qoner.price}}元/秒</text>
+  <text>额：{{Qoner.e}}万元</text>
+  <text>身价：{{Qoner.shenjia}}万元</text>
+  <text>流通时间：{{Qoner.liutongshijian}}</text>
+  <text>量：{{Qoner.liang}}秒</text>
+</view>
+
+<view class='quotation_three'>
+  <view class='three_nav'>
+    <text style="{{threeSelected==1?'background:#76b5fc;color:#fff;':''}}" data-selected="1" bindtap='threeSwiper'>分时</text>
+    <text style="{{threeSelected==2?'background:#76b5fc;color:#fff;':''}}" data-selected="2" bindtap='threeSwiper'>日K*成交额</text>
+    <text style="{{threeSelected==3?'background:#76b5fc;color:#fff;':''}}" data-selected="3" bindtap='threeSwiper'>日K*成交量</text>
+  </view>
+  <view class='three_detail' wx:if="{{threeSelected==1?true:false}}">1</view>
+  <view class='three_detail' wx:if="{{threeSelected==2?true:false}}">2</view>
+  <view class='three_detail' wx:if="{{threeSelected==3?true:false}}">3</view>
+</view>
+
+
+<view class='quotation_four'>
+  <view class='four_nav'>
+    <text style="{{fourSelected==1?'background:#76b5fc;color:#fff;':''}}" data-selected="1" bindtap='fourSwiper'>论坛</text>
+    <text style="{{fourSelected==2?'background:#76b5fc;color:#fff;':''}}" data-selected="2" bindtap='fourSwiper'>最新资讯</text>
+    <text style="{{fourSelected==3?'background:#76b5fc;color:#fff;':''}}" data-selected="3" bindtap='fourSwiper'>个人百科</text>
+    <text style="{{fourSelected==4?'background:#76b5fc;color:#fff;':''}}" data-selected="4" bindtap='fourSwiper'>公告</text>
+  </view>
+  <!-- 论坛 -->
+  <view class='four_detail' style='height:{{scrollviewHeight-50}}px;' wx:if="{{fourSelected==1?true:false}}">
+   <scroll-view  style='height:{{scrollviewHeight-50}}px;' scroll-y lower-threshold="20" bindscrolltolower="getMoreData">
+      <block wx:for="{{forum}}" wx:key="key">
+        <template is="forum" data="{{urlPre,...item}}"></template>
+      </block>
+    </scroll-view>
+  </view>
+  <!-- 最新资讯 -->
+  <view class='four_detail' style='height:{{scrollviewHeight-50}}px;' wx:if="{{fourSelected==2?true:false}}">
+    <scroll-view  style='height:{{scrollviewHeight-50}}px;' scroll-y lower-threshold="20" bindscrolltolower="getMoreData">
+      <block wx:for="{{information}}" wx:key="key">
+        <template is="information" data="{{urlPre,...item}}"></template>
+      </block>
+    </scroll-view>
+  </view>
+  <!-- 个人百科 -->
+  <view class='four_detail' style='min-height:{{scrollviewHeight-50}}px;' wx:if="{{fourSelected==3?true:false}}">
+      <template is="Personal" data="{{...Personal}}"></template>
+  </view>
+  <!-- 公告 -->
+  <view class='four_detail' style='height:{{scrollviewHeight-50}}px;' wx:if="{{fourSelected==4?true:false}}">
+    <scroll-view class='Notice' style='height:{{scrollviewHeight-50}}px;' scroll-y lower-threshold="20" bindscrolltolower="">
+      <block wx:for="{{listData}}" wx:key="key">
+        <template is="Notice" data="{{urlPre,...item}}"></template>
+      </block>
+    </scroll-view>
+  </view>
+</view>
+
+
+  <view class='subTabBar'>
+    <view>
+      <image src='../image/hqnav1.png'></image>
+      <text>买入</text>
+    </view>
+    <view>
+      <image src='../image/hqnav2.png'></image>
+      <text>转让</text>
+    </view>
+    <view>
+    <button bindgetuserinfo='yesno'open-type="getUserInfo" lang="zh_CN">
+      <image src='../image/add.png'></image>
+      <text>{{addremoveStatus}}</text>
+    </button>
+    </view>
+    <view bindtap='exercise'>
+      <image src='../image/xq.png'></image>
+      <text>行权</text>
+    </view>
+    <view bindtap='starSpace'>
+      <image src='../image/kj.png'></image>
+      <text>专属空间</text>
+    </view>
+  </view>
+

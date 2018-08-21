@@ -1,0 +1,41 @@
+<!--index.wxml 行情-->
+<import src="../template/index.wxml" />
+<view class='search'>
+  <input type='search' name="search" value='' bindinput='search' placeholder='明星姓名/编号'>
+  <image src='../image/ico_search.png'></image>
+  </input>
+  <view class='searchResult' style='display:{{searchStatus}};'>
+    <view wx:for="{{searchList}}" wx:key="key">
+      <text>{{item.name}}</text><text>2{{item.starCode}}</text>
+    </view> 
+  </view>
+</view>
+<view class='switch_nav'>
+  <text class="{{currentTab==0?'active':''}}" data-current='0' bindtap='click_nav'>自选</text>
+  <text class="{{currentTab==1?'active':''}}" data-current='1' bindtap='click_nav'>影视明星</text>
+  <text class="{{currentTab==2?'active':''}}" data-current='2' bindtap='click_nav'>体育明星</text>
+</view>
+<view class='quotation_menu'>
+  <text>全部</text>
+  <text>最新价 元/秒</text>
+  <text>涨跌幅</text>
+</view>
+<scroll-view style='height:{{scrollviewHeight}}px;' scroll-y lower-threshold="10" bindscrolltolower="onReachBottom">
+  <swiper class='quotation' style='height:{{swiperHeight}}px;' current="{{currentTab}}" bindchange="touch_nav">
+    <swiper-item>
+      <block wx:if="{{getMyFollowStock!=null}}" wx:for="{{getMyFollowStock}}" wx:key="key" wx:for-index="index">
+        <template is="hqList" data="{{urlPre,...item}}"></template>
+      </block>
+    </swiper-item>
+    <swiper-item>
+      <block wx:for="{{dataList}}" wx:key="key" wx:for-index="index">
+        <template is="hqList" data="{{urlPre,...item}}"></template>
+      </block>
+    </swiper-item>
+    <swiper-item>
+      <block wx:for="{{dataList}}" wx:key="key" wx:for-index="index">
+        <template is="hqList" data="{{urlPre,...item}}"></template>
+      </block>
+    </swiper-item>
+  </swiper>
+</scroll-view>

@@ -1,0 +1,7 @@
+<!--pages/newInformation/index.wxml 最新资讯-->
+<import src="../wxParse/wxParse.wxml"/>
+<view class='newInformation'>
+ <text class='newsTitle'>{{information.title}}</text>
+ <text class='newsTime'>{{information.createDate}}</text>
+  <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+</view>

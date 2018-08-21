@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/member/index/index",
+    "pages/index/index",
+    "pages/template/index",
+    "pages/exercise/index",
+    "pages/quotation/index",
+    "pages/starSpace/index",
+    "pages/components/dialog/index",
+    "pages/newInformation/index",
+    "pages/member/server/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "吾约",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#777",
+    "selectedColor": "#018BD6",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "iconPath": "./pages/image/nav1.png",
+        "selectedIconPath": "./pages/image/nav1_1.png",
+        "pagePath": "pages/index/index",
+        "text": "行情"
+      },
+      {
+        "iconPath": "./pages/image/nav2.png",
+        "selectedIconPath": "./pages/image/nav2_1.png",
+        "pagePath": "pages/index/index",
+        "text": "交易"
+      },
+      {
+        "iconPath": "./pages/image/nav4.png",
+        "selectedIconPath": "./pages/image/nav4_1.png",
+        "pagePath": "pages/member/index/index",
+        "text": "首页"
+      }
+    ]
+  }
+}

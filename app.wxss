@@ -1,0 +1,131 @@
+/**app.wxss**/
+page{
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+.red{
+  color:#ff0000;
+}
+.green{
+  color:green;
+}
+.gray{
+  color:#717171;
+}
+.blue{
+  color:#018BD6;
+}
+/* 模态框*/
+
+.mask {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.mask .mask_layer {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999990;
+}
+
+.maskInfo {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999991;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*授权*/
+
+.getAuthorization {
+  width: 250px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  background:#018BD6;
+  padding:50rpx 0;
+  border-radius: 5px;
+}
+.getAuthorization image{
+  display: block;
+  width:200rpx;
+  height:200rpx;
+  margin-bottom:50rpx;
+}
+.getAuthorization button{
+display: block;
+width:70%;
+height:35px;
+line-height: 35px;
+color:#666;
+font-size: 33rpx;
+background:#fff;
+border:0;
+}
+
+
+/* 二级页tabbar */
+
+.subTabBar{
+  width:100%;
+  height:40px;
+  padding:5px 0;
+  border-top:1px solid #eee;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content:space-between;
+  align-items: center;
+  background:#fff;
+  position: fixed;bottom:0;left:0;z-index: 999999;
+}
+.subTabBar view{
+  width:20%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content:center;
+  align-items: center;
+}
+.subTabBar view button{
+  background: none;
+   display: flex;
+  flex-flow: row wrap;
+  justify-content:center;
+  align-items: center;
+  border-radius: 0;
+  line-height: normal;
+}
+.subTabBar view button::after{
+  border: none;
+}
+.subTabBar image{
+  display: block;
+  width:48rpx;
+  height:48rpx;
+}
+.subTabBar text{
+  display: block;
+  width:100%;
+  color:#888;
+  font-size: 23rpx;
+  text-align: center;
+}
