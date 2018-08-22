@@ -1,1 +1,88 @@
 /* pages/member/address/index.wxss */
+page{background: #f7f7f7;}
+.addAddress{
+  width:90%;
+  height:88rpx;
+  color:#fff;
+  font-size: 30rpx;
+  line-height:88rpx;
+  text-align: center;
+  background:#018BD6;
+  border-radius: 5px;
+  position: fixed;bottom:3%;left:5%;
+  box-shadow: 0px 3px 1px 2px #eee;
+}
+.addressList{
+  width:100%;
+  padding:15rpx 30rpx;
+  box-sizing: border-box;
+  background:#fff;
+  margin: 30rpx 0;
+}
+.addressList .addressUser{
+  color:#333;
+  font-size: 33rpx;
+}
+.addressList .addressUser text{
+  margin-right:30rpx;
+}
+.addressList .addressUser text:last-child{
+  padding:5rpx 20rpx;
+  color: rgb(243, 98, 105);
+  font-size: 25rpx;
+  border-radius: 35rpx;
+  border:1px solid rgb(243, 98, 105);
+}
+.addressList .addressDetail{
+  color:#999;
+  font-size: 30rpx;
+  padding:20rpx 0;
+  border-bottom:1px solid #ddd;
+}
+.addressUeditor{
+  display: flex;
+  padding-top:20rpx;
+  justify-content: space-between;
+}
+.addressUeditor checkbox .wx-checkbox-input{
+  width:36rpx;
+  height: 36rpx;
+  color:rgb(243, 98, 105);
+  border-radius: 50%;
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+color:#fff;
+background-color: #e02e24;
+border-radius: 50%;
+}
+.addressUeditor view text{
+  color:#999;
+  font-size:30rpx;
+}
+.addressUeditor view:last-child{
+  display: flex;
+  width:23%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

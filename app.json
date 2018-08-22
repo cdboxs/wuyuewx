@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/member/address/index",
     "pages/index/index",
     "pages/template/index",
     "pages/exercise/index",
@@ -8,8 +9,7 @@
     "pages/components/dialog/index",
     "pages/newInformation/index",
     "pages/member/index/index",
-    "pages/member/server/index",
-    "pages/member/address/index"
+    "pages/member/server/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

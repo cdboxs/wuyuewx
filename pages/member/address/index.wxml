@@ -1,2 +1,33 @@
-<!--pages/member/address/index.wxml-->
-<text>pages/member/address/index.wxml</text>
+<!--pages/member/address/index.wxml 收货地址-->
+
+<view class='addressList'>
+  <view class='addressUser'>
+    <text>陈德</text><text>13290516103</text><text>默认</text>
+  </view>
+  <view class='addressDetail'>河北省石家庄市育新路玉龙小区10号</view>
+  <view class='addressUeditor'>
+    <view>
+     <checkbox></checkbox><text>默认地址</text>
+    </view>
+    <view>
+      <text>编辑</text><text>删除</text>
+    </view>
+  </view>   
+</view>
+<view class='addressList'>
+  <view class='addressUser'>
+    <text>陈德</text><text>13290516103</text><text>默认</text>
+  </view>
+  <view class='addressDetail'>河北省石家庄市育新路玉龙小区10号</view>
+  <view class='addressUeditor'>
+    <view>
+     <checkbox></checkbox><text>默认地址</text>
+    </view>
+    <view>
+      <text>编辑</text><text>删除</text>
+    </view>
+  </view>   
+</view>
+
+
+<view class='addAddress' bindtap=''>新增收货人</view>
