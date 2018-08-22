@@ -13,7 +13,7 @@
   <image src='../../image/userbg.jpg' class='usertopBG'></image>
   <view class='usertopInfos'>
     <view>
-      <image src="{{photo?photo:'../../image/mrtx.jpg'}}"></image>
+      <image src="{{photo?photo:'../../image/mrtx.jpg'}}" bindtap='goInformation'></image>
     </view>
     <view>
       <text>{{nickname?nickname:'请授权'}}</text>
@@ -51,7 +51,7 @@
 -->
 <!--主菜单-->
 <view class='user_menu'>
-  <view bindtap=''>
+  <view bindtap='goAssets'>
     <image src='../../image/icon_zc.png'></image>
     <text>我的资产</text>
     <image src='../../image/more.png'></image>

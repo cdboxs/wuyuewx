@@ -1,0 +1,63 @@
+/* pages/member/assets/index.wxss */
+
+.myAssets_top {
+  height: 60px;
+  background: #76b5fc;
+}
+
+.myAssets_top view {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  font-size: 31rpx;
+}
+
+.myAssets_top view text {
+  display: block;
+  color: #fff;
+  margin: 2px 0;
+}
+
+.myAssets_top view text:last-child {
+  font-size: 28rpx;
+  padding: 5rpx 20rpx;
+  background: #649ad6;
+  border-radius: 20px;
+  border: 1rpx solid #eee;
+}
+
+.myAssets_sz{
+  width:90%;
+  height:40px;
+  margin:0 auto;
+  color:#777;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+}
+.myAssets_sz image{
+  width:23px;
+  height:15px;
+  margin-right: 20rpx;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

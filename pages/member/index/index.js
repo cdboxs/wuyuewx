@@ -85,6 +85,24 @@ Page({
   onShareAppMessage: function() {
    
   },
+  /*
+  *事件跳转
+  goInformation 个人信息
+  assets 我的资产
+  */ 
+  goInformation(){
+    wx.navigateTo({
+      url: '../information/index',
+    })
+  },
+  goAssets() {
+    wx.navigateTo({
+      url: '../assets/index',
+    })
+  },
+  /*
+  *数据获取
+  */ 
   getUserInfo:(u)=>{
     let tip=1;
     let loginStaus=getUserInfo.getUserInfo(that,tip,u);

@@ -1,0 +1,28 @@
+<!--pages/member/assets/index.wxml 我的资产-->
+<view class='myAssets_top'>
+  <view>
+    <text>账户余额(元)</text>
+    <text>充值</text>
+  </view>
+  <view>
+    <text>79.96</text>
+    <text>体现</text>
+  </view>
+</view>
+<view class='myAssets_sz'>
+  <image src='../../image/dollar.png'></image>
+  <text>持仓市值：242.8</text>
+</view>
+<view class='clickSwitch'>
+  <view class='sNav'>
+    <text class="{{current==1?'active':''}}" data-current="1" bindtap='clickSwitch'>行权记录</text>
+    <text class="{{current==2?'active':''}}" data-current="2" bindtap='clickSwitch'>充值提现</text>
+  </view>
+  <scroll-view wx:if="{{current==1}}" scroll-y style='height:{{clickSwitchH}}px;' lower-threshold="50" bindscrolltolower="switchMoreData">
+    1
+  </scroll-view>
+  <scroll-view wx:if="{{current==2}}" scroll-y style='height:{{clickSwitchH}}px;' lower-threshold="50" bindscrolltolower="switchMoreData">
+   2
+  </scroll-view>
+
+</view>
