@@ -13,26 +13,26 @@ Page({
   data: {
     urlPre: app.globalData.urlPre,
     scrollviewHeight: app.globalData.windowHeight,
-    pages:1,
-    Qone:{},
-    starId:'',
-    stockId:'',
-    threeSelected:1,
-    fourSelected:1,
-    fSelectStatus:'',//板块四 当前选中状态
-    addremoveStatus:'添加自选'
+    pages: 1,
+    Qone: {},
+    starId: '',
+    stockId: '',
+    threeSelected: 1,
+    fourSelected: 1,
+    fSelectStatus: '', //板块四 当前选中状态
+    addremoveStatus: '添加自选'
   },
-  exercise(){
+  exercise() {
     wx.navigateTo({
       url: '../exercise/index?starId=' + that.data.starId,
     })
   },
-  starSpace(){
+  starSpace() {
     wx.navigateTo({
       url: '../starSpace/index?starId=' + that.data.starId + '&price=' + that.data.Qonel.price,
     })
   },
-  informationDetail(e){
+  informationDetail(e) {
     wx.navigateTo({
       url: '../newInformation/index?id=' + e.currentTarget.dataset.id + '&starId=' + that.data.starId,
     })
@@ -40,82 +40,116 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    that=this;
+  onLoad: function(options) {
+    that = this;
     that.setData({
       starId: options.star_id,
       stockId: options.stock_id
     });
+
     let userInfo = wx.getStorageSync('userInfo');
-    if (userInfo){
+    let starInfo = wx.getStorageSync('starInfo');
+    if (userInfo) {
       that.addRemove();
     };
-    let { types, starId, stockId, pages, size } = { types: 1, starId: that.data.starId, stockId: that.data.stockId, pages: 1, size: 7 }
-    
-    quotationStar.getListData(that, { types, starId, stockId, pages, size });
-    
-    
+    let {
+      types,
+      starId,
+      stockId,
+      pages,
+      size
+    } = {
+      types: 1,
+      starId: that.data.starId,
+      stockId: that.data.stockId,
+      pages: 1,
+      size: 7
+    }
+
+    quotationStar.getListData(that, {
+      types,
+      starId,
+      stockId,
+      pages,
+      size
+    });
+
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    setTimeout(function () {
-      let { types, starId, stockId } = { types: 3, starId: that.data.starId, stockId: that.data.stockId };
-      quotationStar.getListData(that, { types, starId });
-      that.getOneData({ starId, stockId });
+  onReady: function() {
+    setTimeout(function() {
+      let {
+        types,
+        starId,
+        stockId
+      } = {
+        types: 3,
+        starId: that.data.starId,
+        stockId: that.data.stockId
+      };
+      quotationStar.getListData(that, {
+        types,
+        starId
+      });
+      that.getOneData({
+        starId,
+        stockId
+      });
     }, 300);
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    that=this;
-  
-   
+  onShow: function() {
+    that = this;
+
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-  
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-  
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function (e) {
-   
+  onReachBottom: function(e) {
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage: function() {
+
   },
-  getOneData:(...item)=>{
+  getOneData: (...item) => {
     wx.showLoading({
       title: '正在加载...',
-      mask:true,
-      icon:'none'
+      mask: true,
+      icon: 'none'
     })
     wx.request({
       url: app.globalData.urlPre + '/api/getStarByIdByStock',
@@ -125,20 +159,22 @@ Page({
       },
       data: {
         starId: item[0].starId,
-        stockId:item[0].stockId
+        stockId: item[0].stockId
       },
       success: (e) => {
-       
+
         if (e.data.code == 200) {
           wx.setNavigationBarTitle({
             title: e.data.data.name + '[' + e.data.data.code + ']',
           })
-           let starInfo = wx.getStorageSync('starInfo');
-        starInfo.code = e.data.data.code;
-        wx.setStorageSync('starInfo', starInfo);
+          let starInfo = wx.getStorageSync('starInfo');
+          starInfo.code = e.data.data.code;
+          starInfo.stockId = that.data.stockId;
+          starInfo.starId = that.data.starId;
+          wx.setStorageSync('starInfo', starInfo);
           that.setData({
             Qonel: e.data.data
-          }); 
+          });
           wx.hideLoading();
         }
       }
@@ -155,11 +191,11 @@ Page({
       },
       success: (e) => {
         if (e.data.code == 200) {
-          e.data.data.shenjia =(e.data.data.shenjia / 10000).toFixed(2);
-          if (e.data.data.liutongshijian>=10000){
-            e.data.data.liutongshijian = (e.data.data.liutongshijian / 10000)+'万秒';
-          }else{
-            e.data.data.liutongshijian = e.data.data.liutongshijian+'秒';
+          e.data.data.shenjia = (e.data.data.shenjia / 10000).toFixed(2);
+          if (e.data.data.liutongshijian >= 10000) {
+            e.data.data.liutongshijian = (e.data.data.liutongshijian / 10000) + '万秒';
+          } else {
+            e.data.data.liutongshijian = e.data.data.liutongshijian + '秒';
           }
           that.setData({
             Qoner: e.data.data
@@ -168,7 +204,7 @@ Page({
       }
     });
   },
-  threeSwiper:(e)=>{
+  threeSwiper: (e) => {
     that.setData({
       threeSelected: e.currentTarget.dataset.selected
     });
@@ -178,24 +214,39 @@ Page({
     //   scrollTop: app.globalData.screenHeight,
     //   duration: 1500
     // });
-    
+
     that.setData({
       fourSelected: e.currentTarget.dataset.selected,
       starId: that.data.starId
     });
 
-    let { types, starId, pages, size } = { types: e.currentTarget.dataset.selected, starId: that.data.starId,pages:1,size:7};
-    quotationStar.getListData(that, { types, starId, pages, size });
+    let {
+      types,
+      starId,
+      pages,
+      size
+    } = {
+      types: e.currentTarget.dataset.selected,
+      starId: that.data.starId,
+      pages: 1,
+      size: 7
+    };
+    quotationStar.getListData(that, {
+      types,
+      starId,
+      pages,
+      size
+    });
   },
 
   /*行情详情页添加取消*/
-  addRemove:()=>{
+  addRemove: () => {
     let userInfo = wx.getStorageSync('userInfo');
-    if(userInfo){
+    if (userInfo) {
       wx.showLoading({
         title: '正在加载...',
-        mask:true,
-        icon:'none'
+        mask: true,
+        icon: 'none'
       })
       wx.request({
         url: app.globalData.urlPre + '/api/ifAddUsersFollowStock',
@@ -208,39 +259,39 @@ Page({
           stockId: that.data.stockId,
           access_token: userInfo.getToken
         },
-        success: function (res) {
+        success: function(res) {
           if (res.data.code == 200) {
             if (res.data.data.is_add_flag == false) {
-              setTimeout(function(){
+              setTimeout(function() {
                 wx.hideLoading();
                 that.setData({
                   addremoveStatus: '添加自选'
                 });
-              },800);
-             
+              }, 800);
+
             } else {
-              setTimeout(function(){
+              setTimeout(function() {
                 wx.hideLoading();
                 that.setData({
                   addremoveStatus: '取消自选'
                 });
-              },800);
-             
+              }, 800);
+
             }
           }
         },
-        fail: function (res) { },
-        complete: function (res) { },
+        fail: function(res) {},
+        complete: function(res) {},
       })
-    }else{
+    } else {
       let tip = null;
       let loginStaus = getUserInfo.getUserInfo(that, tip, u);
     }
 
   },
-  yesno:(u)=>{
+  yesno: (u) => {
     let userInfo = wx.getStorageSync('userInfo');
-    if (userInfo){
+    if (userInfo) {
       wx.request({
         url: app.globalData.urlPre + '/api/addUsersFollowStock',
         method: 'POST',
@@ -252,11 +303,11 @@ Page({
           stockId: that.data.stockId,
           access_token: userInfo.getToken
         },
-        success: function (res) {
+        success: function(res) {
           that.addRemove();
         },
-        fail: function (res) { },
-        complete: function (res) { },
+        fail: function(res) {},
+        complete: function(res) {},
       })
     } else {
       let tip = 1;
@@ -284,7 +335,7 @@ Page({
           page: that.data.pages,
           size: 7
         },
-        success: function (e) {
+        success: function(e) {
           if (that.data.pages > e.data.data.lastPage) {
             wx.hideLoading();
             wx.showToast({
@@ -330,7 +381,7 @@ Page({
           page: that.data.pages,
           size: 7
         },
-        success: function (e) {
+        success: function(e) {
           if (e.data.code = 200 && e.data.data) {
             if (that.data.pages > e.data.data.lastPage) {
               wx.hideLoading();

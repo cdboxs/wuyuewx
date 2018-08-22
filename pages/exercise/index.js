@@ -28,7 +28,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     that=this;
+    that=this;
     let starInfo=wx.getStorageSync('starInfo');
     starInfo.experience=starInfo.experience.substring(0,66);
     that.setData({
@@ -169,6 +169,8 @@ Page({
   },
   yyConfirm(e){
     //行权下单
+    let starInfo = wx.getStorageSync('starInfo');
+    let userInfo = wx.getStorageSync('userInfo');
     wx.request({
       url: app.globalData.urlPre + '/api/orderExercise',
       method: 'POST',
@@ -176,12 +178,31 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
-        access_token: '',
-        starId: that.data.starId
+        access_token: userInfo.getToken,//授权
+        address: that.data.orderDetail.fmDetail.address,//预约地点
+        applyDate: that.data.orderDetail.fmDetail.DateChange,//预约时间
+        name: that.data.orderDetail.fmDetail.userName,//真实姓名
+        phone: that.data.orderDetail.fmDetail.phone,//手机号
+        pay: that.data.orderDetail.seconds,//支付秒数
+        stockId: starInfo.stockId,//行情id
+        starId: that.data.starId,//明星id
+        starExerciseId: that.data.orderDetail.star_exercise_id,//明星行权id
+        editPayThePassword: that.data.getPwd//支付密码
+       
       },
       success: e => {
         console.log(e);
-        if (e.data.code == 200) {
+        if (e.data.code == '-200'){
+          wx.showToast({
+            title: '密码不正确！',
+            mask:true,
+            icon:'none'
+          });
+          that.setData({
+            getPwd: ''
+          });
+          return;
+        }else if (e.data.code == 200) {
           wx.hideLoading();
           for (let val of e.data.data.info) {
             val.title = val.title.substring(0, 20);

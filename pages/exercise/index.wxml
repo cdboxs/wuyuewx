@@ -25,8 +25,7 @@
 
 <view class='mask' wx:if="{{maskState}}" style='width:{{width}}px;height:{{height}}px;'>
   <view class='sendPayPwd' wx:if="{{payModelShow}}" style='width:300px;position:fixed;top:200rpx;left:{{(width-300)/2}}px;z-index:999999;'>
-    <template is="sixPayPwd" data="{{getPwd}}"></template>
-
+    <template is="sixPayPwd" data="{{getPwd}}"></template><!--支付密码-->
   </view>
   <view class='mask_layer' bindtap='hideMask'></view>
   <view class='exerciseOrder'>
@@ -40,7 +39,7 @@
       </view>
     </view>
     <form bindsubmit='exerciseOrder' class='exerciseOrderF'>
-      <input type='number' style='border:1px solid #333;' bindinput='payPwd' maxlength='6' confirm-hold="true" focus='{{focus}}' confirm-hold="{{focus}}"></input>
+      <input type='number' style='display:none;' bindinput='payPwd' value='{{getPwd}}' maxlength='6' confirm-hold="true" focus='{{focus}}' confirm-hold="{{focus}}"></input>
       <view>
         <label>预约日期:</label>
         <picker mode="multiSelector" value="{{dateTime}}" bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}" data-start="{{dateTimeArray[0][dateTime[0]]}}">
