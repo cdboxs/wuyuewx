@@ -66,18 +66,18 @@ Page({
   //事件处理函数
   onLoad: function () {
    that=this;
-    
+   if (that.data.currentTab == 1) {
+     let { types, page, size } = { types: that.data.currentTab, page: that.data.page, size: 7 };
+     that.getData({ types, page, size });
+   } else if (that.data.currentTab == 0) {
+     let { types, page, size } = { types: 0, page: that.data.page, size: 7 };
+     that.getMyFollowStock({ types, page, size });
+   }
   },
 
   onShow:function(){
     let getNewToken = gettoken.getToken();
-    if (that.data.currentTab ==1) {
-      let { types, page, size } = { types: that.data.currentTab, page: that.data.page, size: 7 };
-        that.getData({ types, page, size });
-    } else if (that.data.currentTab == 0) {
-      let { types, page, size } = { types: 0, page: that.data.page, size: 7 };
-      that.getMyFollowStock({ types, page, size });
-    }
+   
 
   },
   /**

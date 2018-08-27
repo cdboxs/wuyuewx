@@ -43,6 +43,79 @@
 }
 
 
+/*行权记录  */
+.xqjl{
+  width:94%;
+  margin:30rpx auto;
+  border-bottom: 1rpx solid #eee;
+}
+.xqjl .xqjl_top{
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+}
+.top_info{
+  width:60%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.top_info view{
+  width:100%;
+}
+.xqjl .xqjl_top image{
+  width:67px;
+  height:67px;
+}
+.xqjl .xqjl_top text{
+  color:#767676;
+  margin:15rpx;
+  font-size: 30rpx;
+}
+.xqjl_btn{
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 30rpx;
+}
+.xqjl_btn text{
+  color:#767676;
+  display: block;
+  width:100%;
+  margin:10rpx 0 5rpx 0;
+}
+
+/*充值提现  */
+.cztx{
+  width:94%;
+  padding:15rpx 0;
+  margin:0 auto;
+  display: flex;
+  border-bottom:1rpx solid #eee;
+}
+.cztx view:first-child{
+  width:80%;
+  display:flex;
+  flex-flow: row wrap;
+}
+.cztx view:first-child text{
+  display: block;
+  width:100%;
+  font-size: 30rpx;
+}
+.cztx view:first-child text:first-child{
+  font-size: 32rpx;
+  padding-bottom:20rpx;
+}
+.cztx view:first-child text:last-child{
+  color:#777;
+}
+.cztx view:last-child{
+  width:20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 34rpx;
+}
 
 
 

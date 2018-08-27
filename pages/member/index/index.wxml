@@ -18,7 +18,7 @@
     <view>
       <text>{{nickname?nickname:'请授权'}}</text>
       <image src="https://lg-8di92cg8-1256691104.cos.ap-shanghai.myqcloud.com/hy01.png"></image>
-      <text>我要升级></text>
+      <!-- <text>我要升级></text> -->
     </view>
   </view>
 </view>
@@ -56,7 +56,7 @@
     <text>我的资产</text>
     <image src='../../image/more.png'></image>
   </view>
-  <view>
+  <!-- <view>
     <image src='../../image/icon_shdz.png'></image>
     <text>地址管理</text>
     <image src='../../image/more.png'></image>
@@ -75,7 +75,7 @@
     <image src='../../image/anquan.png'></image>
     <text>账号安全</text>
     <image src='../../image/more.png'></image>
-  </view>
+  </view> -->
 </view>
 
 <view class='user_menu'>

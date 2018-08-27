@@ -27,27 +27,68 @@ Page({
    that=this;
     let userInfo = wx.getStorageSync('userInfo');
     if (userInfo.getToken) {
-      wx.showLoading({
-        title: '正在加载...',
-        mask: true,
-      })
-      wx.request({
-        url: app.globalData.urlPre + '/api/getMyExerciseOrder',
-        method: 'POST',
-        header: {
-          'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        data: {
-          page: 1,
-          size: 7,
-          access_token: userInfo.getToken
-        },
-        success: e => {
+        wx.showLoading({
+          title: '正在加载...',
+          mask: true,
+        })
+        //获取我的资产基本数据
+        wx.request({
+         url: app.globalData.urlPre + '/api/getMyBalanceAndHoldWarehouse',
+          method:'POST',
+          header: {
+            'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          data: {
+            access_token: userInfo.getToken
+          },
+          success: e => {
+            wx.hideLoading();
+            if(e.data.code==200){
+              that.setData({
+                assets: e.data.data
+              });
+            }
+            
+          }
+        })
+        //获取行权记录
+        wx.request({
+          //url: app.globalData.urlPre + '/api/getMyExerciseOrder', 
+          url: 'https://www.wuyueapp.com/wuyueTest/api/getMyExerciseOrder',
+          method: 'POST',
+          header: {
+            'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          data: {
+            page: 1,
+            size: 7,
+            access_token: userInfo.getToken
+          },
+          success: e => {
+              console.log(e);
+              wx.hideLoading();
+          }
+        });
+        //获充值提现记录
+        wx.request({
+          url: app.globalData.urlPre + '/api/getMyUsersWalletLogList',
+          method: 'POST',
+          header: {
+            'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          data: {
+            page: 1,
+            size: 7,
+            access_token: userInfo.getToken
+          },
+          success: e => {
             console.log(e);
             wx.hideLoading();
-        }
-      });
+          }
+        });
     }
   },
 
