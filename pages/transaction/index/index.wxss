@@ -155,7 +155,7 @@
 
 .mingxi .mingxi_meun view {
   width: 96%;
-  padding: 20rpx 0;
+  padding: 30rpx 0;
   border-bottom: 1rpx solid #eee;
 }
 
