@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgurl: app.globalData.urlPre,
     current:1,
     clickSwitchH:app.globalData.windowHeight-135,
   },
@@ -54,8 +55,8 @@ Page({
         })
         //获取行权记录
         wx.request({
-          //url: app.globalData.urlPre + '/api/getMyExerciseOrder', 
-          url: 'https://www.wuyueapp.com/wuyueTest/api/getMyExerciseOrder',
+          
+          url: app.globalData.urlPre + '/api/getMyExerciseOrder', 
           method: 'POST',
           header: {
             'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
@@ -67,7 +68,9 @@ Page({
             access_token: userInfo.getToken
           },
           success: e => {
-              console.log(e);
+            that.setData({
+              xqjlData: e.data.data.list
+            });
               wx.hideLoading();
           }
         });
@@ -85,7 +88,9 @@ Page({
             access_token: userInfo.getToken
           },
           success: e => {
-            console.log(e);
+            that.setData({
+              cztxData:e.data.data.list
+            });
             wx.hideLoading();
           }
         });

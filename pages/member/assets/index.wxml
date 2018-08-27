@@ -19,36 +19,45 @@
     <text class="{{current==2?'active':''}}" data-current="2" bindtap='clickSwitch'>充值提现</text>
   </view>
   <scroll-view wx:if="{{current==1}}" scroll-y style='height:{{clickSwitchH}}px;' lower-threshold="50" bindscrolltolower="switchMoreData">
+  <block wx:for="{{xqjlData}}" wx:key="key">
     <view class='xqjl'>
       <view class='xqjl_top'>
-        <image src='../../image/photo.jpg'></image>
+        <image src='{{imgurl}}{{item.photo}}'></image>
         <view class='top_info'>
-          <view><text>于问问</text> <text>2秒</text></view>
-          <text>录制祝福视频</text>
+          <view><text>{{item.name}}</text> <text>{{item.pay_seconds}}秒</text></view>
+          <text>{{item.title}}</text>
         </view>
-        <view class='isok'>已拒绝</view>
+        <view class='isok' wx:if="{{item.status==1}}">待接单</view>
+        <view class='isok' wx:elif="{{item.status==3}}">已拒绝</view>
+        <view class='isok' wx:elif="{{item.status==4}}">待确认</view>
+        <view class='isok' wx:elif="{{item.status==5}}">已完成</view>
+        <view class='isok' wx:elif="{{item.status==6}}">系统取消</view>
       </view>
-      <view class='xqjl_btn'>
+      <!-- <view class='xqjl_btn'>
         <text>预约时间：2018-12-12 08：15：00</text>
         <text>预约地点：1555555</text>
-      </view>
+      </view> -->
     </view>
+  </block>    
   </scroll-view>
   <scroll-view wx:if="{{current==2}}" scroll-y style='height:{{clickSwitchH}}px;' lower-threshold="50" bindscrolltolower="switchMoreData">
-    <view class='cztx'>
-      <view>
-        <text>充值0.01元</text>
-        <text>2018-08-27 17:13:32</text>
-      </view>
-      <view class='green'><text>+0.01</text></view>
-    </view>
-    <view class='cztx'>
-      <view>
-        <text>充值0.01元</text>
-        <text>2018-08-27 17:13:32</text>
-      </view>
-      <view class='green'><text>+0.01</text></view>
-    </view>
+      <block  wx:for="{{cztxData}}" wx:key="key">
+        <view class='cztx' wx:if="{{item.type==5}}">
+            <view>
+              <text>{{item.content}}{{item.money}}元</text>
+              <text>{{item.create_date}}</text>
+            </view>
+            <view class='green'><text>+{{item.money}}</text></view>
+        </view>
+        <view class='cztx' wx:if="{{item.type==6}}">
+            <view>
+              <text>{{item.content}}{{item.money}}元</text>
+              <text>2018-08-27 17:13:32</text>
+            </view>
+            <view class='green'><text>-{{item.money}}</text></view>
+        </view>
+  
+      </block>  
   </scroll-view>
 
 </view>
