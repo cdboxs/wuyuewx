@@ -8,6 +8,7 @@
     "pages/components/dialog/index",
     "pages/newInformation/index",
     "pages/member/index/index",
+    "pages/transaction/index/index",
     "pages/member/server/index",
     "pages/member/address/index",
     "pages/member/assets/index",
@@ -34,14 +35,14 @@
       {
         "iconPath": "./pages/image/nav2.png",
         "selectedIconPath": "./pages/image/nav2_1.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/transaction/index/index",
         "text": "交易"
       },
       {
         "iconPath": "./pages/image/nav4.png",
         "selectedIconPath": "./pages/image/nav4_1.png",
         "pagePath": "pages/member/index/index",
-        "text": "首页"
+        "text": "我的"
       }
     ]
   }

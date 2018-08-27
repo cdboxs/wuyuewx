@@ -1,0 +1,170 @@
+/* pages/transaction/index/index.wxss */
+
+.Purchase {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.fm_l {
+  width: 65%;
+}
+
+.fm_l view {
+  margin: 15rpx 0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.fm_l view input {
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.fm_l .fm_name input {
+  width: 100%;
+  height: 80rpx;
+  margin: 0 auto;
+  font-size: 28rpx;
+  border-radius: 5px;
+  border: 1rpx solid #f0f3fc;
+}
+
+.fm_count {
+  width: 100%;
+  display: flex;
+  border: 1rpx solid #f0f3fc;
+}
+
+.fm_count text {
+  display: block;
+  width: 100rpx;
+  height: 80rpx;
+  color: #555;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 50rpx;
+  background: #f0f3fc;
+  font-weight: normal;
+}
+
+.fm_count input {
+  width: 100%;
+  height: 80rpx;
+  font-size: 28rpx;
+}
+
+.count_text {
+  width: 100%;
+  height: 50rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.count_text view {
+  width: 33%;
+  font-size: 28rpx;
+  text-align: center;
+}
+
+.count_text view:nth-of-type(2) {
+  background: rgba(53, 172, 241, 0.562);
+}
+
+.sendbuttton button {
+  width: 100%;
+  height: 90rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 90rpx;
+}
+
+.table_r {
+  width: 30%;
+  margin-top: 25rpx;
+}
+
+.table_r .table_nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.table_r .table_nav text {
+  width: 50%;
+  padding-bottom: 10rpx;
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.tableactive {
+  color: #76b5fc;
+  border-bottom: 2px solid #76b5fc;
+}
+
+.table_data {
+  padding: 10rpx 0;
+}
+
+.table_data:nth-of-type(2) {
+  border-top: 1px solid #eee;
+}
+
+.table_data view {
+  width: 100%;
+  height: 35rpx;
+  display: flex;
+}
+
+.table_data view text {
+  display: block;
+  width: 33%;
+  color: #888;
+  font-size: 27rpx;
+  text-align: center;
+}
+
+.pNav {
+  width: 100%;
+  display: flex;
+  padding: 10rpx 0;
+  background: #f0f3fc;
+}
+
+.pNav view {
+  width: 25%;
+  color: #777;
+  font-size: 26rpx;
+  text-align: center;
+}
+.pNav view text{
+  display: block;
+}
+
+.mingxi {
+  width: 94%;
+  margin: 0 auto;
+}
+
+.mingxi .mingxi_meun {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mingxi .mingxi_meun view {
+  width: 96%;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.mingxi view image {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.mingxi view text {
+  font-size: 30rpx;
+  margin-left:20rpx;
+}

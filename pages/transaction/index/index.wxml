@@ -1,0 +1,314 @@
+<!--pages/transaction/index/index.wxml-->
+<view class='clickSwitch'>
+  <view class='sNav'>
+    <text class="{{current==1?'active':''}}" data-current="1" bindtap='clickSwitch'>买入</text>
+    <text class="{{current==2?'active':''}}" data-current="2" bindtap='clickSwitch'>转让</text>
+    <text class="{{current==3?'active':''}}" data-current="3" bindtap='clickSwitch'>撤单</text>
+    <text class="{{current==4?'active':''}}" data-current="4" bindtap='clickSwitch'>持仓</text>
+    <text class="{{current==5?'active':''}}" data-current="5" bindtap='clickSwitch'>明细</text>
+  </view>
+  <view wx:if="{{current==1}}">
+    <view class='Purchase'>
+      <view class='fm_l'>
+        <form bindsubmit='fmSend'>
+          <view class='fm_name'>
+            <input type='text' value='' placeholder='姓名/代码'></input>
+          </view>
+          <view class='fm_count'>
+            <text>-</text>
+            <input type='text' value='' placeholder='购买价格（元）'></input>
+            <text>+</text>
+          </view>
+          <view class='count_text'>
+            <view>跌停
+              <text class='green'>0.01</text>
+            </view>
+            <view>300.65</view>
+            <view>涨停
+              <text class='red'>300.0万</text>
+            </view>
+          </view>
+          <view class='fm_count'>
+            <text>-</text>
+            <input type='text' value=''placeholder='购买时间（秒）'></input>
+            <text>+</text>
+          </view>
+          <view class='sendbuttton'>
+            <button formType='submit' class='bgred'>购买</button>
+          </view>
+        </form>
+      </view>
+      <view class='table_r'>
+        <view class='table_nav'>
+          <text class="{{tablecurrent==0?'tableactive':''}}" bindtap='tableClick' data-tablecurrent='0'>五档</text>
+          <text class="{{tablecurrent==1?'tableactive':''}}" bindtap='tableClick' data-tablecurrent='1'>明细</text>
+        </view>
+        <swiper current='{{tablecurrent}}' bindchange="tableTouch" style='height:100%;'>
+          <swiper-item>
+            <view class='table_data'>
+              <view>
+                <text>卖5</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>卖4</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>卖3</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>卖2</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>卖1</text><text>--</text><text>--</text>
+              </view>
+            </view>
+            <view class='table_data'>
+               <view>
+                <text>买1</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>买2</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>买3</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>买4</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>买5</text><text>--</text><text>--</text>
+              </view>
+            </view>
+          </swiper-item>
+          <swiper-item>
+               <view class='table_data'>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+            </view>
+            <view class='table_data'>
+               <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+            </view>
+          
+          </swiper-item>
+        </swiper>
+      </view>
+    </view>
+    <view class='pNav'>
+    <view><text>名称/市值</text><text>（元）</text></view>
+    <view><text>持有/可转</text><text>（秒）</text></view>
+    <view><text>现价/成本</text><text>（元）</text></view>
+    <view><text>名称/盈亏</text><text>（元）</text></view>
+    </view>
+    <scroll-view scroll-y style='height:{{clickSwitchH}}px;' lower-threshold="50" bindscrolltolower="switchMoreData">
+      买入
+    </scroll-view>
+  </view>
+  <view wx:if="{{current==2}}">
+     <view class='Purchase'>
+      <view class='fm_l'>
+        <form bindsubmit='fmSend'>
+          <view class='fm_name'>
+            <input type='text' value='' placeholder='姓名/代码'></input>
+          </view>
+          <view class='fm_count'>
+            <text>-</text>
+            <input type='text' value='' placeholder='转让价格（元）'></input>
+            <text>+</text>
+          </view>
+          <view class='count_text'>
+            <view>跌停
+              <text class='green'>0.01</text>
+            </view>
+            <view>300.65</view>
+            <view>涨停
+              <text class='red'>300.0万</text>
+            </view>
+          </view>
+          <view class='fm_count'>
+            <text>-</text>
+            <input type='text' value=''placeholder='转让时间（秒）'></input>
+            <text>+</text>
+          </view>
+          <view class='sendbuttton'>
+            <button formType='submit' class='bgblue'>转让</button>
+          </view>
+        </form>
+      </view>
+      <view class='table_r'>
+        <view class='table_nav'>
+          <text class="{{tablecurrent==0?'tableactive':''}}" bindtap='tableClick' data-tablecurrent='0'>五档</text>
+          <text class="{{tablecurrent==1?'tableactive':''}}" bindtap='tableClick' data-tablecurrent='1'>明细</text>
+        </view>
+        <swiper current='{{tablecurrent}}' bindchange="tableTouch" style='height:100%;'>
+          <swiper-item>
+            <view class='table_data'>
+              <view>
+                <text>卖5</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>卖4</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>卖3</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>卖2</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>卖1</text><text>--</text><text>--</text>
+              </view>
+            </view>
+            <view class='table_data'>
+               <view>
+                <text>买1</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>买2</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>买3</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>买4</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>买5</text><text>--</text><text>--</text>
+              </view>
+            </view>
+          </swiper-item>
+          <swiper-item>
+               <view class='table_data'>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+            </view>
+            <view class='table_data'>
+               <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+              <view>
+                <text>--</text><text>--</text><text>--</text>
+              </view>
+            </view>
+          
+          </swiper-item>
+        </swiper>
+      </view>
+    </view>
+    <view class='pNav'>
+      <view><text>名称/市值</text><text>（元）</text></view>
+      <view><text>持有/可转</text><text>（秒）</text></view>
+      <view><text>现价/成本</text><text>（元）</text></view>
+      <view><text>名称/盈亏</text><text>（元）</text></view>
+    </view>
+    <scroll-view scroll-y style='height:{{clickSwitchH}}px;' lower-threshold="50" bindscrolltolower="switchMoreData">
+      转让
+    </scroll-view>
+  </view>
+  <view wx:if="{{current==3}}">
+    <view class='pNav'>
+      <view><text>名称/代码</text></view>
+      <view><text>委托价/时间</text></view>
+      <view><text>委托量/成交量</text></view>
+      <view><text>状态</text></view>
+    </view>
+    <scroll-view scroll-y style='height:{{clickSwitchH}}px;' lower-threshold="50" bindscrolltolower="switchMoreData">
+      撤单
+    </scroll-view>
+  </view>
+  <view wx:if="{{current==4}}">
+    <view class='pNav'>
+      <view><text>名称/市值</text><text>（元）</text></view>
+      <view><text>持有/可转</text><text>（秒）</text></view>
+      <view><text>现价/成本</text><text>（元）</text></view>
+      <view><text>名称/盈亏</text><text>（元）</text></view>
+    </view>
+    <scroll-view scroll-y style='height:{{clickSwitchH}}px;' lower-threshold="50" bindscrolltolower="switchMoreData">
+      持仓
+    </scroll-view>
+  </view>
+  <view wx:if="{{current==5}}">
+    <view class='mingxi'>
+        <view class='mingxi_meun'>
+            <view>
+              <image src='../../image/ico_mxdr.png'></image>
+              <text>当日委托</text>
+            </view>
+            <image src='../../image/more.png'></image>
+        </view>
+        <view class='mingxi_meun'>
+            <view>
+              <image src='../../image/ico_mxdr.png'></image>
+              <text>当日成交</text>
+            </view>
+            <image src='../../image/more.png'></image>
+        </view>
+        <view class='mingxi_meun'>
+            <view>
+              <image src='../../image/ico_mxls.png'></image>
+              <text>历史委托</text>
+            </view>
+            <image src='../../image/more.png'></image>
+        </view>
+        <view class='mingxi_meun'>
+            <view>
+              <image src='../../image/ico_mxls.png'></image>
+              <text>历史成交</text>
+            </view>
+            <image src='../../image/more.png'></image>
+        </view>
+    </view>
+    
+      
+  </view>
+
+
+</view>
