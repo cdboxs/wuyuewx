@@ -18,7 +18,7 @@
     <text class="{{current==1?'active':''}}" data-current="1" bindtap='clickSwitch'>行权记录</text>
     <text class="{{current==2?'active':''}}" data-current="2" bindtap='clickSwitch'>充值提现</text>
   </view>
-  <scroll-view wx:if="{{current==1}}" scroll-y style='height:{{clickSwitchH}}px;' lower-threshold="50" bindscrolltolower="xqjlMoreData">
+  <scroll-view wx:if="{{current==1}}" scroll-y style='height:{{clickSwitchH}}px;' lower-threshold="5" bindscrolltolower="xqjlMoreData">
   <block wx:for="{{xqjlData}}" wx:key="key">
     <view class='xqjl'>
       <view class='xqjl_top'>
@@ -40,7 +40,7 @@
     </view>
   </block>    
   </scroll-view>
-  <scroll-view wx:if="{{current==2}}" scroll-y style='height:{{clickSwitchH}}px;' lower-threshold="70" bindscrolltolower="cztxMoreData">
+  <scroll-view wx:if="{{current==2}}" scroll-y style='height:{{clickSwitchH}}px;' lower-threshold="5" bindscrolltolower="cztxMoreData">
       <block  wx:for="{{cztxData}}" wx:key="key">
         <view class='cztx' wx:if="{{item.type==5}}">
             <view>

@@ -8,7 +8,7 @@ Page({
   data: {
     searchStatus:'none',
     urlPre: app.globalData.urlPre,
-    scrollviewHeight: app.globalData.windowHeight-115,
+    scrollviewHeight: app.globalData.windowHeight,
     swiperHeight:'',
     currentTab:1,    //切换默认下表
     types:'',         //数据类型

@@ -4,7 +4,7 @@
   <input type='search' name="search" value='' bindinput='search' placeholder='明星姓名/编号'>
   <image src='../image/ico_search.png'></image>
   </input>
-  <view class='searchResult' style='display:{{searchStatus}};'>
+  <view class='searchResult' style='display:{{searchStatus}};height:{{scrollviewHeight-27}}px'>
     <view wx:for="{{searchList}}" wx:key="key">
       <text>{{item.name}}</text><text>2{{item.starCode}}</text>
     </view> 
@@ -20,7 +20,7 @@
   <text>最新价 元/秒</text>
   <text>涨跌幅</text>
 </view>
-<scroll-view style='height:{{scrollviewHeight}}px;' scroll-y lower-threshold="10" bindscrolltolower="onReachBottom">
+<scroll-view style='height:{{scrollviewHeight-115}}px;' scroll-y lower-threshold="10" bindscrolltolower="onReachBottom">
   <swiper class='quotation' style='height:{{swiperHeight}}px;' current="{{currentTab}}" bindchange="touch_nav">
     <swiper-item>
       <block wx:if="{{getMyFollowStock!=null}}" wx:for="{{getMyFollowStock}}" wx:key="key" wx:for-index="index">
