@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    userInfo:{}
   },
   ueditorUserInfo(){
 
@@ -35,6 +35,12 @@ Page({
       },
       success: function(res) {
         console.log(res);
+        if(res.data.code){
+          that.setData({
+            userInfo: res.data.data.UsersInfoList,
+            userName: res.data.data.usersName
+          });
+        }
       },
       fail: function(res) {},
     })
