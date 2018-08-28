@@ -1,4 +1,51 @@
 <!--pages/member/information/index.wxml个人信息-->
-<view class='information_'>
-
+<view class='information_photo'>
+  <view>
+    <image src='../../image/photo.jpg'></image>
+    <text>wuyue-4567813</text>
+  </view>
+  <view>
+    <text>修改头像</text>
+    <image src='../../image/more.png'></image>
+  </view>
 </view>
+
+  <view class='information_menu'>
+    <view>
+      <text>昵称</text>
+    </view>
+    <view>
+      <text>陈德</text>
+      <image src='../../image/more.png'></image>
+    </view>
+  </view>
+  <view class='information_menu'>
+    <view>
+      <text>手机号</text>
+    </view>
+    <view>
+      <text>13290516103</text>
+      <image src='../../image/more.png'></image>
+    </view>
+  </view>
+  <view class='information_menu'>
+    <view>
+      <text>姓名</text>
+    </view>
+    <view>
+      <text>陈德</text>
+      <image src='../../image/more.png'></image>
+    </view>
+  </view>
+  <view class='information_menu'>
+    <view>
+      <text>身份证号</text>
+    </view>
+    <view>
+      <text>130130198806163378</text>
+      <image src='../../image/more.png'></image>
+    </view>
+  </view>
+  <button form-type='submit' class='ueditorUserInfo bgblue'>编辑</button>
+
+

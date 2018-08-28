@@ -1,4 +1,8 @@
 // pages/member/information/index.js
+let that;
+const app = new getApp();
+const base64 = require('../../utils/base64.js');
+const getUserInfo = require('../../utils/login.js');
 Page({
 
   /**
@@ -7,13 +11,32 @@ Page({
   data: {
   
   },
+  ueditorUserInfo(){
 
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    that=this;
+    let userInfo = wx.getStorageSync('userInfo');
     wx.setNavigationBarTitle({
       title: '个人信息',
+    });
+    wx.request({
+      url: app.globalData.urlPre +'/api/info',
+      header: {
+        'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      method: 'GET',
+      data:{
+        access_token: userInfo.getToken
+      },
+      success: function(res) {
+        console.log(res);
+      },
+      fail: function(res) {},
     })
   },
 

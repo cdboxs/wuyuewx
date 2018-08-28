@@ -12,8 +12,8 @@
     "pages/transaction/index/index",
     "pages/member/server/index",
     "pages/member/address/index",
-    "pages/member/accountSecurity/index",
-    "pages/member/information/index"
+    "pages/member/information/index",
+    "pages/member/accountSecurity/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
