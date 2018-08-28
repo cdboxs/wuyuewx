@@ -1,5 +1,7 @@
 /* pages/member/assets/index.wxss */
-
+page{
+  overflow-y: hidden;
+}
 .myAssets_top {
   height: 60px;
   background: #76b5fc;

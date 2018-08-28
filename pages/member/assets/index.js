@@ -11,7 +11,12 @@ Page({
   data: {
     imgurl: app.globalData.urlPre,
     current:1,
-    clickSwitchH:app.globalData.windowHeight-135,
+    clickSwitchH:app.globalData.windowHeight-85,
+    xqjlPages:1,
+    xqjlData:[],
+    cztxPages:1,
+    cztxData:[]
+
   },
   /**
    * 切换事件
@@ -19,6 +24,105 @@ Page({
   clickSwitch(e){
     that.setData({
       current: e.currentTarget.dataset.current
+    });
+  },
+  //行权记录加载更多
+  xqjlMoreData(){
+    that.setData({
+      xqjlPages: that.data.xqjlPages+1
+    });
+    wx.showLoading({
+      title: '正在加载',
+      mask:true,
+      icon:'none'
+    })
+    let userInfo = wx.getStorageSync('userInfo');
+    //获取行权记录
+    wx.request({
+      url: app.globalData.urlPre + '/api/getMyExerciseOrder',
+      method: 'POST',
+      header: {
+        'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        page: that.data.xqjlPages,
+        size: 7,
+        access_token: userInfo.getToken
+      },
+      success: e => {
+        if(e.data.code==200){
+          let getOnexqjlData=that.data.xqjlData;
+          if (that.data.xqjlPages > e.data.data.lastPage) {
+            wx.showToast({
+              title: '没有更多数据',
+              mask:true,
+              icon:'none'
+            })
+          }else{
+            for(var i=0;i<e.data.data.list.length;i++){
+              getOnexqjlData.push(e.data.data.list[i]);
+            }
+            that.setData({
+              xqjlData: getOnexqjlData
+            });
+            setTimeout(()=>{
+              wx.hideLoading();
+            },600);
+          }
+        }
+        
+      }
+    });
+  },
+  cztxMoreData(){
+     //获取充值提现
+    that.setData({
+      cztxPages: that.data.cztxPages + 1
+    });
+    wx.showLoading({
+      title: '正在加载',
+      mask: true,
+      icon: 'none'
+    })
+    let userInfo = wx.getStorageSync('userInfo');
+   
+    wx.request({
+      url: app.globalData.urlPre + '/api/getMyUsersWalletLogList',
+      method: 'POST',
+      header: {
+        'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        page: that.data.cztxPages,
+        size: 7,
+        access_token: userInfo.getToken
+      },
+      success: e => {
+       
+        if (e.data.code == 200) {
+          let getOnecztxData = that.data.cztxData;
+          if (that.data.cztxPages > e.data.data.lastPage) {
+            wx.showToast({
+              title: '没有更多数据',
+              mask: true,
+              icon: 'none'
+            })
+          } else {
+            for (var i = 0; i < e.data.data.list.length; i++) {
+              getOnecztxData.push(e.data.data.list[i]);
+            }
+            that.setData({
+              cztxData: getOnecztxData
+            });
+            setTimeout(() => {
+              wx.hideLoading();
+            }, 600);
+          }
+        }
+
+      }
     });
   },
   /**
@@ -55,7 +159,6 @@ Page({
         })
         //获取行权记录
         wx.request({
-          
           url: app.globalData.urlPre + '/api/getMyExerciseOrder', 
           method: 'POST',
           header: {
@@ -88,6 +191,7 @@ Page({
             access_token: userInfo.getToken
           },
           success: e => {
+            console.log(e);
             that.setData({
               cztxData:e.data.data.list
             });
