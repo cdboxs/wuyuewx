@@ -260,8 +260,17 @@
       <view><text>委托量/成交量</text></view>
       <view><text>状态</text></view>
     </view>
-    <scroll-view scroll-y style='height:{{clickSwitchH}}px;' lower-threshold="50" bindscrolltolower="switchMoreData">
-      撤单
+    <scroll-view scroll-y style='height:{{scrollheight-75}}px;' lower-threshold="10" bindscrolltolower="cdMoreData">
+       <view class='jyData'>
+        <view class='DataList' wx:for="{{cdListData}}" wx:key="{{key}}">
+          <view>
+            <text>{{item.name}}</text><text>{{item.price}}</text><text>{{item.num}}</text><text>{{item.isBuyFlag}}</text>
+          </view>
+          <view>
+            <text>{{item.code}}</text><text>{{item.createDate}}</text><text>{{item.total_num}}</text><text>{{item.statusFlag}}</text>
+          </view>
+        </view>
+      </view>
     </scroll-view>
   </view>
   <view wx:if="{{current==4}}">
@@ -269,10 +278,20 @@
       <view><text>名称/市值</text><text>（元）</text></view>
       <view><text>持有/可转</text><text>（秒）</text></view>
       <view><text>现价/成本</text><text>（元）</text></view>
-      <view><text>名称/盈亏</text><text>（元）</text></view>
+      <view><text>盈亏</text><text>（元）</text></view>
     </view>
-    <scroll-view scroll-y style='height:{{clickSwitchH}}px;' lower-threshold="50" bindscrolltolower="switchMoreData">
-      持仓
+    <scroll-view scroll-y style='height:{{scrollheight-75}}px;' lower-threshold="10" bindscrolltolower="ccMoreData">
+      <view class='jyData'>
+        <view class='DataList' wx:for="{{ccListData}}" wx:key="key">
+          <view>
+            <text>{{item.name}}</text><text>{{item.chiyou}}</text><text>{{item.new_price}}</text><text>{{item.yingkunshu}}</text>
+          </view>
+          <view>
+            <text>{{item.shizhi}}</text><text>{{item.kezhuan}}</text><text>{{item.chengben}}</text><text>{{item.yingkunbaifenbi}}</text>
+          </view>
+        </view>
+        
+      </view>
     </scroll-view>
   </view>
   <view wx:if="{{current==5}}">

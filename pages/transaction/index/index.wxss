@@ -138,7 +138,8 @@
   font-size: 26rpx;
   text-align: center;
 }
-.pNav view text{
+
+.pNav view text {
   display: block;
 }
 
@@ -166,5 +167,30 @@
 
 .mingxi view text {
   font-size: 30rpx;
-  margin-left:20rpx;
+  margin-left: 20rpx;
+}
+
+/*持仓-撤单*/
+
+.jyData {
+  width: 98%;
+  margin: 0 auto;
+}
+
+.DataList {
+  padding: 10rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.DataList view {
+  display: flex;
+  justify-content: space-between;
+}
+
+.DataList view text {
+  width: 25%;
+  color: #666;
+  padding: 10rpx 0;
+  font-size: 28rpx;
+  text-align: center;
 }

@@ -9,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo:{}
+    photourl: app.globalData.urlPre,
+    userDetail:{}
   },
   ueditorUserInfo(){
 
@@ -37,7 +38,7 @@ Page({
         console.log(res);
         if(res.data.code){
           that.setData({
-            userInfo: res.data.data.UsersInfoList,
+            userDetail: res.data.data.UsersInfoList[0],
             userName: res.data.data.usersName
           });
         }

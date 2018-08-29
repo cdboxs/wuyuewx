@@ -158,3 +158,17 @@
     </view>
   </view>
 </template>
+<!-- 明细-今日委托 -->
+<template>
+<view class='jrwt'>
+  <view class='mxNav'>
+    <text>名称/代码</text>
+    <text>委托价/时间</text>
+    <text>委托量/成交量</text>
+    <text>状态</text>
+  </view>
+  <scroll-view wx:if="{{current==1}}" scroll-y style='height:{{clickSwitchH}}px;' lower-threshold="5" bindscrolltolower="xqjlMoreData">
+  今日委托
+  </scroll-view>
+</view>
+</template>
