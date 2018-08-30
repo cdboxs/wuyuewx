@@ -13,14 +13,16 @@
 .fm_l view {
   margin: 15rpx 0;
   border-radius: 5px;
-  overflow: hidden;
+
 }
 
 .fm_l view input {
   text-align: center;
   box-sizing: border-box;
 }
-
+.fm_l .fm_name{
+  position: relative;
+}
 .fm_l .fm_name input {
   width: 100%;
   height: 80rpx;
@@ -169,7 +171,31 @@
   font-size: 30rpx;
   margin-left: 20rpx;
 }
-
+/*买入--转让*/
+.seachList{
+  width:99%;
+  height:157px;
+  background:#fff;
+  border:1rpx solid #eee;
+  position: absolute;top:35px;left:0;z-index: 99999;
+}
+.seachList view{
+  width:90%;
+  padding:20rpx 0;
+  margin:0 auto;
+  display: flex;
+  color:#555;
+  font-size: 28rpx;
+  justify-content: space-around;
+  border-bottom:1px solid #eee;
+  border-radius: 0;
+}
+.seachList view text:first-child{
+  width:80%;
+}
+.seachList view text:last-child{
+  width:20%;
+}
 /*持仓-撤单*/
 
 .jyData {

@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/transaction/index/index",
+    "pages/index/index",
     "pages/member/assets/index",
     "pages/template/index",
     "pages/exercise/index",

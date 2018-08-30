@@ -12,6 +12,9 @@ Page({
     scrollheight: app.globalData.windowHeight,
     current:1,
     tablecurrent:0,
+    second:0,//买入的秒数
+    totalPrice:0,//买入的总价格
+    paySeachShow:false,//买入搜索显示状态
     ccPages: 1,//持仓页码
     ccListData: [],//持仓数据
     cdPages: 1,//撤单页码
@@ -109,38 +112,180 @@ Page({
   
   },
   /*
+  *买入
+  */ 
+  paySeachName(e){
+    that=this;
+    if (e.detail.value){
+      that.setData({
+        paySeachShow:true,
+        second: 0
+      });
+      wx.request({
+        url: app.globalData.urlPre + '/api/getStockByParam',
+        header: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        method: 'POST',
+        data: {
+          type:1,
+          param: e.detail.value
+        },
+        success: function (res) {
+          console.log(res)
+          if (res.data.code == 200 && res.data.data != null) {
+            that.setData({
+              paySeachList: res.data.data.info
+            });
+          } else {
+            wx.showToast({
+              title: '暂无检测结果',
+              mask: true,
+              icon: 'none'
+            })
+          }
+        },
+        fail: function (res) { },
+      })
+    }else{
+      that.setData({
+        paySeachShow: false,
+        second: 0
+      });
+    }
+
+  },
+  assginValue(e){
+    that=this;
+    that.setData({
+      seachVal: e.currentTarget.dataset.payname.name + '[' + e.currentTarget.dataset.payname.code+']',
+      payPrice: e.currentTarget.dataset.payname.new_price,
+      limit_down: e.currentTarget.dataset.payname.limit_down,
+      limit_up: e.currentTarget.dataset.payname.limit_up,
+      paySeachShow: false
+     
+    });
+  },
+  payJian(){
+    that=this;
+    if (that.data.second<=0){
+     
+    }else{
+      that = this;
+      if (that.data.second > 10000) {
+
+      } else {
+        let computedTotal;
+
+        that.setData({
+          second: parseInt(that.data.second) - 1
+        });
+        computedTotal = that.data.payPrice * that.data.second;
+        if (computedTotal <= 5) {
+          computedTotal = computedTotal + (computedTotal * 0.01);
+        } else if (computedTotal > 5) {
+          computedTotal = computedTotal + (computedTotal * 0.001);
+        }
+        console.log(computedTotal);
+        that.setData({
+          totalPrice: computedTotal
+        });
+      }
+    }
+    
+  },
+  secondChange(e){
+    console.log(e.detail.value);
+    that = this;
+    that.setData({
+      second: parseInt(e.detail.value)
+    });
+    if (e.detail.value > 10000) {
+
+    } else {
+      let computedTotal;
+      computedTotal = that.data.payPrice * parseInt(e.detail.value);
+      if (computedTotal <= 5) {
+        computedTotal = computedTotal + (computedTotal * 0.01);
+      } else if (computedTotal > 5) {
+        computedTotal = computedTotal + (computedTotal * 0.001);
+      }
+      console.log(computedTotal);
+      that.setData({
+        totalPrice: computedTotal
+      });
+    }
+  },
+  payJia(){
+    that = this;
+    if (that.data.second >10000) {
+
+    } else {
+      let computedTotal;
+      
+      that.setData({
+        second: parseInt(that.data.second) +1
+      });
+      computedTotal = that.data.payPrice * that.data.second;
+      if (computedTotal<=5){
+        computedTotal = computedTotal+(computedTotal*0.01);
+      } else if (computedTotal>5){
+        computedTotal = computedTotal + (computedTotal * 0.001);
+      }
+      console.log(computedTotal);
+      that.setData({
+        totalPrice: computedTotal
+      });
+    }
+  },
+  /*
   *持仓数据
   */
   ccData(){
     that = this;
     let userInfo = wx.getStorageSync('userInfo');
-    wx.request({
-      url: app.globalData.urlPre + '/api/getMyHoldWarehouseList',
-      header: {
-        'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      method: 'POST',
-      data: {
-        page:1,
-        size:7,
-        access_token: userInfo.getToken
-      },
-      success: function (res) {
-        if (res.data.code == 200 && res.data.data!=null) {
-          that.setData({
-            ccListData: res.data.data.list
-          });
-        }else{
-          wx.showToast({
-            title: '暂无数据',
-            mask:true,
-            icon:'none'
-          })
-        }
-      },
-      fail: function (res) { },
-    })
+    if (userInfo){
+      wx.request({
+        url: app.globalData.urlPre + '/api/getMyHoldWarehouseList',
+        header: {
+          'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        method: 'POST',
+        data: {
+          page: 1,
+          size: 7,
+          access_token: userInfo.getToken
+        },
+        success: function (res) {
+          if (res.data.code == 200 && res.data.data != null) {
+            that.setData({
+              ccListData: res.data.data.list
+            });
+          } else {
+            wx.showToast({
+              title: '暂无数据',
+              mask: true,
+              icon: 'none'
+            })
+          }
+        },
+        fail: function (res) { },
+      })
+    }else{
+      wx.showToast({
+        title: '请登录',
+        mask:true,
+        icon:'none'
+      });
+      setTimeout(()=>{
+        wx.switchTab({
+          url: '../../member/index/index',
+        })
+      },600);
+      
+    }
+
   },
   ccMoreData(){
     that.setData({
@@ -195,33 +340,47 @@ Page({
   cdData() {
     that = this;
     let userInfo = wx.getStorageSync('userInfo');
-    wx.request({
-      url: app.globalData.urlPre + '/api/getMyStockOrder',
-      header: {
-        'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      method: 'POST',
-      data: {
-        page: 1,
-        size: 7,
-        access_token: userInfo.getToken
-      },
-      success: function (res) {
-        if (res.data.code == 200 && res.data.data != null) {
-          that.setData({
-            cdListData: res.data.data.list
-          });
-        } else {
-          wx.showToast({
-            title: '暂无数据',
-            mask: true,
-            icon: 'none'
-          })
-        }
-      },
-      fail: function (res) { },
-    })
+    if (userInfo) {
+      wx.request({
+        url: app.globalData.urlPre + '/api/getMyStockOrder',
+        header: {
+          'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        method: 'POST',
+        data: {
+          page: 1,
+          size: 7,
+          access_token: userInfo.getToken
+        },
+        success: function (res) {
+          if (res.data.code == 200 && res.data.data != null) {
+            that.setData({
+              cdListData: res.data.data.list
+            });
+          } else {
+            wx.showToast({
+              title: '暂无数据',
+              mask: true,
+              icon: 'none'
+            })
+          }
+        },
+        fail: function (res) { },
+      })
+    } else {
+      wx.showToast({
+        title: '请登录',
+        mask: true,
+        icon: 'none'
+      });
+      setTimeout(() => {
+        wx.switchTab({
+          url: '../../member/index/index',
+        })
+      }, 600);
+
+    }
   },
   cdMoreData() {
     that.setData({

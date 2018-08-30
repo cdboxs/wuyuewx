@@ -12,26 +12,32 @@
       <view class='fm_l'>
         <form bindsubmit='fmSend'>
           <view class='fm_name'>
-            <input type='text' value='' placeholder='姓名/代码'></input>
+            <input type='text' value='{{seachVal}}' placeholder='姓名/代码' bindinput='paySeachName'></input>
+            <scroll-view wx:if="{{paySeachShow}}" scroll-y  class='seachList'>
+              <view wx:for="{{paySeachList}}" wx:key="key" data-payname="{{item}}" bindtap='assginValue'>
+                <text>{{item.name}}</text><text>{{item.code}}</text>
+              </view>
+            </scroll-view>
+           
           </view>
           <view class='fm_count'>
             <text>-</text>
-            <input type='text' value='' placeholder='购买价格（元）'></input>
+            <input type='text' value='{{payPrice}}' placeholder='购买价格（元）'></input>
             <text>+</text>
           </view>
           <view class='count_text'>
             <view>跌停
-              <text class='green'>0.01</text>
+              <text class='green'>{{limit_down?limit_down:'0.00'}}</text>
             </view>
-            <view>300.65</view>
+            <view>{{totalPrice}}</view>
             <view>涨停
-              <text class='red'>300.0万</text>
+              <text class='red'>{{limit_up?(limit_up/10000):'0.00'}}万</text>
             </view>
           </view>
           <view class='fm_count'>
-            <text>-</text>
-            <input type='text' value=''placeholder='购买时间（秒）'></input>
-            <text>+</text>
+            <text bindtap='payJian'>-</text>
+            <input type='text' bindinput='secondChange' value='{{second}}'placeholder='购买时间（秒）'></input>
+            <text bindtap='payJia'>+</text>
           </view>
           <view class='sendbuttton'>
             <button formType='submit' class='bgred'>购买</button>
