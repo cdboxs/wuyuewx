@@ -22,7 +22,7 @@
           </view>
           <view class='fm_count'>
             <text>-</text>
-            <input type='text' value='{{payPrice}}' placeholder='购买价格（元）'></input>
+            <input type='text' value='{{payPrice}}' bindinput='addjust' placeholder='购买价格（元）'></input>
             <text>+</text>
           </view>
           <view class='count_text'>
@@ -40,7 +40,7 @@
             <text bindtap='payJia'>+</text>
           </view>
           <view class='sendbuttton'>
-            <button formType='submit' class='bgred'>购买</button>
+            <button formType='submit' class='bgred'>立即预约</button>
           </view>
         </form>
       </view>
@@ -51,76 +51,120 @@
         </view>
         <swiper current='{{tablecurrent}}' bindchange="tableTouch" style='height:100%;'>
           <swiper-item>
-            <view class='table_data'>
-              <view>
+            <view class='table_data' wx:if="{{wudang}}">
+              <view  wx:for="{{wudang}}" wx:key="key" wx:for-index="index">
+                <text>卖{{wudang.length-index}}</text>
+                <text wx:if="{{item.total_num==-1}}">--</text>
+                <text class='red' wx:else>{{item.total_num}}</text>
+                <block  wx:if="{{item.price==-1}}">
+                    <text>--</text>
+                </block>
+                <block wx:elif="{{item.price !=-1}}">
+                    <text wx:if="{{(item.price-wudangStatus)>0}}" class="red">{{item.price}}</text>
+                    <text wx:elif="{{(item.price-wudangStatus)==0}}" style="color:#777;">{{item.price}}</text>
+                    <text wx:elif="{{(item.price-wudangStatus)<0}}" class="green">{{item.price}}</text>
+                </block>
+              </view>
+            </view>
+            <view class='table_data'wx:else >
+             <view >
                 <text>卖5</text><text>--</text><text>--</text>
               </view>
-              <view>
+               <view >
                 <text>卖4</text><text>--</text><text>--</text>
               </view>
-              <view>
+               <view >
                 <text>卖3</text><text>--</text><text>--</text>
               </view>
-              <view>
+               <view >
                 <text>卖2</text><text>--</text><text>--</text>
               </view>
-              <view>
+               <view >
                 <text>卖1</text><text>--</text><text>--</text>
               </view>
             </view>
-            <view class='table_data'>
-               <view>
+           <view class='table_data' wx:if="{{mai}}">
+              <view  wx:for="{{mai}}" wx:key="key" wx:for-index="index">
+                <text>买{{index+1}}</text>
+                <text wx:if="{{item.total_num==-1}}">--</text>
+                <text class='red' wx:else>{{item.total_num}}</text>
+                <block  wx:if="{{item.price==-1}}">
+                    <text>--</text>
+                </block>
+                <block wx:elif="{{item.price !=-1}}">
+                    <text wx:if="{{(item.price-maiStatus)>0}}" class="red">{{item.price}}</text>
+                    <text wx:elif="{{(item.price-maiStatus)==0}}" style="color:#777;">{{item.price}}</text>
+                    <text wx:elif="{{(item.price-maiStatus)<0}}" class="green">{{item.price}}</text>
+                </block>
+              </view>
+            </view>
+            <view class='table_data'wx:else >
+             <view >
                 <text>买1</text><text>--</text><text>--</text>
               </view>
-              <view>
+               <view >
                 <text>买2</text><text>--</text><text>--</text>
               </view>
-              <view>
+               <view >
                 <text>买3</text><text>--</text><text>--</text>
               </view>
-              <view>
+               <view >
                 <text>买4</text><text>--</text><text>--</text>
               </view>
-              <view>
+               <view >
                 <text>买5</text><text>--</text><text>--</text>
               </view>
             </view>
           </swiper-item>
           <swiper-item>
-               <view class='table_data'>
-              <view>
-                <text>--</text><text>--</text><text>--</text>
-              </view>
-              <view>
-                <text>--</text><text>--</text><text>--</text>
-              </view>
-              <view>
-                <text>--</text><text>--</text><text>--</text>
-              </view>
-              <view>
-                <text>--</text><text>--</text><text>--</text>
-              </view>
-              <view>
-                <text>--</text><text>--</text><text>--</text>
-              </view>
+          <scroll-view scroll-y style='height:{{getscrollHt-getscrollHf+10}}px;' lower-threshold="5" bindscrolltolower="mxilMoreData" >
+              <view class='table_data' wx:if="{{mxi}}">
+                <view wx:for="{{mxi}}" wx:key="key">
+                <block wx:if="{{item.price==-1&&item.num==-1&&item.stockOrderCode==-1}}">
+                   <text>--</text><text>--</text><text>--</text>
+                </block>
+                <block wx:else>
+                  <text wx:if="{{(item.price-closingPrice)>0}}" class="red">{{item.price}}</text>
+                  <text wx:elif="{{(item.price-closingPrice)==0}}" style="color:#777;">{{item.price}}</text>
+                  <text wx:elif="{{(item.price-closingPrice)<0}}" class="green">{{item.price}}</text>
+                  <text>{{item.num}}</text>
+                  <text>{{item.stockOrderCode}}</text>
+                </block>
+                </view>
             </view>
-            <view class='table_data'>
-               <view>
-                <text>--</text><text>--</text><text>--</text>
-              </view>
-              <view>
-                <text>--</text><text>--</text><text>--</text>
-              </view>
-              <view>
-                <text>--</text><text>--</text><text>--</text>
-              </view>
-              <view>
-                <text>--</text><text>--</text><text>--</text>
-              </view>
-              <view>
-                <text>--</text><text>--</text><text>--</text>
-              </view>
+            <view class='table_data' wx:else>
+                <view>
+                  <text>--</text><text>--</text><text>--</text>
+                </view>
+                <view>
+                  <text>--</text><text>--</text><text>--</text>
+                </view>
+                <view>
+                  <text>--</text><text>--</text><text>--</text>
+                </view>
+                <view>
+                  <text>--</text><text>--</text><text>--</text>
+                </view>
+                <view>
+                  <text>--</text><text>--</text><text>--</text>
+                </view>
+                 <view>
+                  <text>--</text><text>--</text><text>--</text>
+                </view>
+                <view>
+                  <text>--</text><text>--</text><text>--</text>
+                </view>
+                <view>
+                  <text>--</text><text>--</text><text>--</text>
+                </view>
+                <view>
+                  <text>--</text><text>--</text><text>--</text>
+                </view>
+                <view>
+                  <text>--</text><text>--</text><text>--</text>
+                </view>
             </view>
+            </scroll-view>
           
           </swiper-item>
         </swiper>
@@ -132,7 +176,7 @@
     <view><text>现价/成本</text><text>（元）</text></view>
     <view><text>名称/盈亏</text><text>（元）</text></view>
     </view>
-    <scroll-view scroll-y style='height:{{clickSwitchH}}px;' lower-threshold="50" bindscrolltolower="switchMoreData">
+    <scroll-view scroll-y class='maiH' style='background:red;height:{{getscrollH}}px;' lower-threshold="50" bindscrolltolower="switchMoreData">
       买入
     </scroll-view>
   </view>

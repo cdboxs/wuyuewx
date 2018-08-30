@@ -3,6 +3,7 @@ let that;
 const app = new getApp();
 const base64 = require('../../utils/base64.js');
 const getUserInfo = require('../../utils/login.js');
+const getSH = require('../../utils/computed.js');
 Page({
 
   /**
@@ -14,6 +15,7 @@ Page({
     tablecurrent:0,
     second:0,//买入的秒数
     totalPrice:0,//买入的总价格
+    addjust:'',//买入价格调整
     paySeachShow:false,//买入搜索显示状态
     ccPages: 1,//持仓页码
     ccListData: [],//持仓数据
@@ -55,12 +57,33 @@ Page({
       tablecurrent: e.detail.current
     });
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     that=this;
-
+    /*scroll高度计算：买入scroll 明细scroll*/ 
+    getSH.getScroolH('.maiH').exec(function (res) {
+      that.setData({
+        getscrollH: that.data.scrollheight - res[0].top
+      });
+    })
+    getSH.getScroolH('.Purchase').exec(function (res) {
+      console.log(res);
+      console.log(res[0].height);
+      that.setData({
+        getscrollHt: res[0].height
+      });
+    })
+    getSH.getScroolH('.table_nav').exec(function (res) {
+      console.log( res[0].top);
+      that.setData({
+        getscrollHf: res[0].top
+      });
+    })
+  /*scroll高度计算：买入scroll 明细scroll*/
+ 
   },
 
   /**
@@ -74,7 +97,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
@@ -132,7 +155,7 @@ Page({
           param: e.detail.value
         },
         success: function (res) {
-          console.log(res)
+          //console.log(res)
           if (res.data.code == 200 && res.data.data != null) {
             that.setData({
               paySeachList: res.data.data.info
@@ -146,7 +169,8 @@ Page({
           }
         },
         fail: function (res) { },
-      })
+      });
+
     }else{
       that.setData({
         paySeachShow: false,
@@ -164,6 +188,108 @@ Page({
       limit_up: e.currentTarget.dataset.payname.limit_up,
       paySeachShow: false
      
+    });
+    //五档卖
+    wx.request({
+      url: app.globalData.urlPre + '/api/stockOrderByPrice',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      data: {
+        type: 2,//1买2卖
+        stockId: e.currentTarget.dataset.payname.id
+      },
+      success: function (res) {
+        //console.log(res)
+        if (res.data.code == 200 && res.data.data != null) {
+          that.setData({
+            wudang: res.data.data.info,
+            wudangStatus: res.data.data.closing_price
+          });
+        } else {
+          wx.showToast({
+            title: '暂无检测结果',
+            mask: true,
+            icon: 'none'
+          })
+        }
+      },
+      fail: function (res) { },
+    });
+    //五档买
+    wx.request({
+      url: app.globalData.urlPre + '/api/stockOrderByPrice',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      data: {
+        type: 1,//1买2卖
+        stockId: e.currentTarget.dataset.payname.id
+      },
+      success: function (res) {
+        //console.log(res)
+        if (res.data.code == 200 && res.data.data != null) {
+          that.setData({
+            mai: res.data.data.info,
+            maiStatus: res.data.data.closing_price
+          });
+        } else {
+          wx.showToast({
+            title: '暂无检测结果',
+            mask: true,
+            icon: 'none'
+          })
+        }
+      },
+      fail: function (res) { },
+    });
+    //买入明细
+    wx.request({
+      url: app.globalData.urlPre + '/api/getTransactionSuccessList',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      data: {
+        pages:1,
+        size:20,
+        stockId: e.currentTarget.dataset.payname.id
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.code == 200 && res.data.data != null) {
+          that.setData({
+            mxi: res.data.data.list,
+            mxiH: res.data.data.list.length*16
+          });
+        } else {
+          wx.showToast({
+            title: '暂无检测结果',
+            mask: true,
+            icon: 'none'
+          })
+        }
+      },
+      fail: function (res) { },
+    });
+  },
+  addjust(e){
+    let computedTotal;
+    that=this;
+    that.setData({
+      payPrice: e.detail.value
+    });
+    
+    computedTotal = that.data.payPrice * that.data.second;
+    if (computedTotal <= 5) {
+      computedTotal = computedTotal + (computedTotal * 0.01);
+    } else if (computedTotal > 5) {
+      computedTotal = computedTotal + (computedTotal * 0.001);
+    }
+    that.setData({
+      totalPrice: computedTotal
     });
   },
   payJian(){

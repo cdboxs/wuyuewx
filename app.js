@@ -8,9 +8,8 @@ App({
     windowWidth: '',
     windowHeight: '',
     screenHeight:''
-
   },
-  onLaunch: function() {
+  onLaunch: function(element) {
       let that = this;
       wx.getSystemInfo({
         success: function(res) {
@@ -19,5 +18,7 @@ App({
           that.globalData.screenHeight = res.screenHeight;
         },
       });
+   
   },
+  
 })
