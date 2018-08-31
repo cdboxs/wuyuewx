@@ -84,7 +84,8 @@
 
 .table_r {
   width: 30%;
-  margin-top: 25rpx;
+  padding-top: 25rpx;
+  box-sizing: border-box;
 }
 
 .table_r .table_nav {

@@ -32,6 +32,7 @@ Page({
     });
     switch (e.currentTarget.dataset.current){
       case '1':
+        that.maiListData();
         break;
       case '2':
         break;
@@ -70,20 +71,17 @@ Page({
       });
     })
     getSH.getScroolH('.Purchase').exec(function (res) {
-      console.log(res);
-      console.log(res[0].height);
       that.setData({
         getscrollHt: res[0].height
       });
     })
     getSH.getScroolH('.table_nav').exec(function (res) {
-      console.log( res[0].top);
       that.setData({
         getscrollHf: res[0].top
       });
     })
   /*scroll高度计算：买入scroll 明细scroll*/
- 
+    that.maiListData();
   },
 
   /**
@@ -508,7 +506,98 @@ Page({
 
     }
   },
+
   cdMoreData() {
+    that.setData({
+      cdPages: that.data.cdPages + 1
+    });
+    wx.showLoading({
+      title: '正在加载',
+      mask: true,
+      icon: 'none'
+    })
+    let userInfo = wx.getStorageSync('userInfo');
+    wx.request({
+      url: app.globalData.urlPre + '/api/getMyStockOrder',
+      header: {
+        'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      data: {
+        page: that.data.cdPages,
+        size: 7,
+        access_token: userInfo.getToken
+      },
+      success: e => {
+        if (e.data.code == 200) {
+          let getOneData = that.data.cdListData;
+          if (that.data.cdPages > e.data.data.lastPage) {
+            wx.showToast({
+              title: '没有更多数据',
+              mask: true,
+              icon: 'none'
+            })
+          } else {
+            for (var i = 0; i < e.data.data.list.length; i++) {
+              getOneData.push(e.data.data.list[i]);
+            }
+            that.setData({
+              cdListData: getOneData
+            });
+            setTimeout(() => {
+              wx.hideLoading();
+            }, 600);
+          }
+        }
+
+      }
+    });
+  },
+    /**
+   * 买入列表
+   * */
+  maiListData() {
+    that = this;
+    let userInfo = wx.getStorageSync('userInfo');
+    if (userInfo) {
+      wx.request({
+        url: app.globalData.urlPre + '/api/getMyStockListByUserIdAndStockId',
+        header: {
+          'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        method: 'POST',
+        data: {
+          type:1,
+          page: 1,
+          size: 7,
+          access_token: userInfo.getToken
+        },
+        success: function (res) {
+          if (res.data.code == 200 && res.data.data != null) {
+            that.setData({
+              maiListData: res.data.data.list
+            });
+          }
+        },
+        fail: function (res) { },
+      })
+    } else {
+      wx.showToast({
+        title: '请登录',
+        mask: true,
+        icon: 'none'
+      });
+      setTimeout(() => {
+        wx.switchTab({
+          url: '../../member/index/index',
+        })
+      }, 600);
+
+    }
+  },
+  maiListMoreData() {
     that.setData({
       cdPages: that.data.cdPages + 1
     });

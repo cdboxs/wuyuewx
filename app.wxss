@@ -2,6 +2,14 @@
 page{
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
 }
+.noData{
+  height: 250rpx;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-size: 27rpx;
+ color:#C9C9C9;
+}
 button::before{
   border-radius: 0;
   border:0;
