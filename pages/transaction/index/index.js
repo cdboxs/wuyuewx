@@ -30,11 +30,16 @@ Page({
     that.setData({
       current: e.currentTarget.dataset.current
     });
+    that.setData({
+      paySeachShow: false,
+      second: 0
+    });
     switch (e.currentTarget.dataset.current){
       case '1':
-        that.maiListData();
+        that.maiListData(1);
         break;
       case '2':
+        that.maiListData(2);
         break;
       case '3':
         that.cdData();
@@ -58,7 +63,14 @@ Page({
       tablecurrent: e.detail.current
     });
   },
-
+  /**
+   * 明细跳转
+   * */ 
+  goto(e){
+    wx.navigateTo({
+      url: '../mingxi/index?mxid=' + e.currentTarget.dataset.mxid,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -81,7 +93,8 @@ Page({
       });
     })
   /*scroll高度计算：买入scroll 明细scroll*/
-    that.maiListData();
+    that.maiListData(1);
+    
   },
 
   /**
@@ -95,7 +108,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
@@ -137,44 +150,100 @@ Page({
   */ 
   paySeachName(e){
     that=this;
-    if (e.detail.value){
-      that.setData({
-        paySeachShow:true,
-        second: 0
-      });
-      wx.request({
-        url: app.globalData.urlPre + '/api/getStockByParam',
-        header: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        method: 'POST',
-        data: {
-          type:1,
-          param: e.detail.value
-        },
-        success: function (res) {
-          //console.log(res)
-          if (res.data.code == 200 && res.data.data != null) {
-            that.setData({
-              paySeachList: res.data.data.info
-            });
-          } else {
-            wx.showToast({
-              title: '暂无检测结果',
-              mask: true,
-              icon: 'none'
-            })
-          }
-        },
-        fail: function (res) { },
-      });
 
-    }else{
-      that.setData({
-        paySeachShow: false,
-        second: 0
-      });
-    }
+      if (e.detail.value) {
+        that.setData({
+          paySeachShow: true,
+          second: 0
+        });
+        wx.request({
+          url: app.globalData.urlPre + '/api/getStockByParam',
+          header: {
+
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          method: 'POST',
+          data: {
+            type: 1,
+            param: e.detail.value,
+
+          },
+          success: function (res) {
+            console.log(res)
+            if (res.data.code == 200 && res.data.data != null) {
+              that.setData({
+                paySeachList: res.data.data.info
+              });
+            } else {
+              wx.showToast({
+                title: '暂无检测结果',
+                mask: true,
+                icon: 'none'
+              })
+            }
+          },
+          fail: function (res) { },
+        });
+      } else {
+        that.setData({
+          paySeachShow: false,
+          second: 0
+        });
+      }
+
+
+   
+
+  },
+  /*
+  *转让
+  */
+  zrSeachName(e) {
+    that = this;
+      if (e.detail.value) {
+        that.setData({
+          paySeachShow: true,
+          second: 0
+        });
+        let userInfo = wx.getStorageSync('userInfo');
+        if (userInfo) {
+          wx.request({
+            url: app.globalData.urlPre + '/api/transferStockOrderByParam',
+            header: {
+              'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            data: {
+              param: e.detail.value,
+              access_token: userInfo.getToken
+            },
+            success: function (res) {
+              console.log(res)
+              if (res.data.code == 200 && res.data.data != null) {
+                that.setData({
+                  paySeachList: res.data.data.info
+                });
+              } else {
+                wx.showToast({
+                  title: '暂无检测结果',
+                  mask: true,
+                  icon: 'none'
+                })
+              }
+            },
+            fail: function (res) { },
+          });
+        }
+      } else {
+        that.setData({
+          paySeachShow: false,
+          second: 0
+        });
+      }
+   
+
+  
 
   },
   assginValue(e){
@@ -557,7 +626,7 @@ Page({
     /**
    * 买入列表
    * */
-  maiListData() {
+  maiListData(types) {
     that = this;
     let userInfo = wx.getStorageSync('userInfo');
     if (userInfo) {
@@ -569,12 +638,13 @@ Page({
         },
         method: 'POST',
         data: {
-          type:1,
+          type: types,
           page: 1,
           size: 7,
           access_token: userInfo.getToken
         },
         success: function (res) {
+          console.log(res);
           if (res.data.code == 200 && res.data.data != null) {
             that.setData({
               maiListData: res.data.data.list
@@ -597,7 +667,8 @@ Page({
 
     }
   },
-  maiListMoreData() {
+  maiListMoreData(e) {
+    console.log(e.currentTarget.dataset.types);
     that.setData({
       cdPages: that.data.cdPages + 1
     });
@@ -608,19 +679,20 @@ Page({
     })
     let userInfo = wx.getStorageSync('userInfo');
     wx.request({
-      url: app.globalData.urlPre + '/api/getMyStockOrder',
+      url: app.globalData.urlPre + '/api/getMyStockListByUserIdAndStockId',
       header: {
         'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       method: 'POST',
       data: {
+        type: e.currentTarget.dataset.types,
         page: that.data.cdPages,
         size: 7,
         access_token: userInfo.getToken
       },
       success: e => {
-        if (e.data.code == 200) {
+        if (e.data.code == 200 && e.data.data !=null) {
           let getOneData = that.data.cdListData;
           if (that.data.cdPages > e.data.data.lastPage) {
             wx.showToast({
@@ -639,6 +711,8 @@ Page({
               wx.hideLoading();
             }, 600);
           }
+        }else{
+          wx.hideLoading();
         }
 
       }

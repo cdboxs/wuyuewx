@@ -1,0 +1,18 @@
+<!--pages/transaction/mingxi/index.wxml-->
+<import src="../../template/index.wxml"/>
+<view wx:if="{{mxid==1}}">
+<!-- 当日委托 -->
+<template is="mxjrwt"></template>
+</view>
+<view wx:elif="{{mxid==2}}">
+<!-- 当日成交 -->
+2
+</view>
+<view wx:elif="{{mxid==3}}">
+<!-- 历史委托 -->
+3
+</view>
+<view wx:elif="{{mxid==4}}">
+<!-- 历史成交 -->
+4
+</view>

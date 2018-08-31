@@ -13,7 +13,8 @@
     "pages/member/server/index",
     "pages/member/address/index",
     "pages/member/information/index",
-    "pages/member/accountSecurity/index"
+    "pages/member/accountSecurity/index",
+    "pages/transaction/mingxi/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

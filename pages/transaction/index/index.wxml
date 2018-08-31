@@ -181,7 +181,7 @@
     <view><text>现价/成本</text><text>（元）</text></view>
     <view><text>盈亏</text><text>（元）</text></view>
     </view>
-    <scroll-view scroll-y class='maiH' style='height:{{getscrollH}}px;' lower-threshold="50" bindscrolltolower="switchMoreData">
+    <scroll-view scroll-y class='maiH' style='height:{{getscrollH}}px;' lower-threshold="5" data-types='1' bindscrolltolower="maiListMoreData">
       <!-- 买入 -->
       <view class='jyData' wx:if="{{maiListData}}">
         <view class='DataList' wx:for="{{maiListData}}" wx:key="key">
@@ -203,7 +203,7 @@
       <view class='fm_l'>
         <form bindsubmit='fmSend'>
           <view class='fm_name'>
-            <input type='text' value='{{seachVal}}' placeholder='姓名/代码' bindinput='paySeachName'></input>
+            <input type='text' value='{{seachVal}}' placeholder='姓名/代码' bindinput='zrSeachName'></input>
             <scroll-view wx:if="{{paySeachShow}}" scroll-y  class='seachList'>
               <view wx:for="{{paySeachList}}" wx:key="key" data-payname="{{item}}" bindtap='assginValue'>
                 <text>{{item.name}}</text><text>{{item.code}}</text>
@@ -371,7 +371,7 @@
     <view><text>现价/成本</text><text>（元）</text></view>
     <view><text>盈亏</text><text>（元）</text></view>
     </view>
-    <scroll-view scroll-y class='maiH' style='height:{{getscrollH}}px;' lower-threshold="50" bindscrolltolower="switchMoreData">
+    <scroll-view scroll-y class='maiH' style='height:{{getscrollH}}px;' lower-threshold="5" data-types='2' bindscrolltolower="maiListMoreData">
       <!-- 转让 -->
       <view class='jyData' wx:if="{{maiListData}}">
         <view class='DataList' wx:for="{{maiListData}}" wx:key="key">
@@ -432,28 +432,28 @@
   </view>
   <view wx:if="{{current==5}}">
     <view class='mingxi'>
-        <view class='mingxi_meun'>
+        <view class='mingxi_meun' data-mxid='1' bindtap='goto'>
             <view>
               <image src='../../image/ico_mxdr.png'></image>
               <text>当日委托</text>
             </view>
-            <image src='../../image/more.png'></image>
+            <image src='../../image/more.png'></image> 
         </view>
-        <view class='mingxi_meun'>
+        <view class='mingxi_meun' data-mxid='2' bindtap='goto'>
             <view>
               <image src='../../image/ico_mxdr.png'></image>
               <text>当日成交</text>
             </view>
             <image src='../../image/more.png'></image>
         </view>
-        <view class='mingxi_meun'>
+        <view class='mingxi_meun' data-mxid='3' bindtap='goto'>
             <view>
               <image src='../../image/ico_mxls.png'></image>
               <text>历史委托</text>
             </view>
             <image src='../../image/more.png'></image>
         </view>
-        <view class='mingxi_meun'>
+        <view class='mingxi_meun' data-mxid='4' bindtap='goto'>
             <view>
               <image src='../../image/ico_mxls.png'></image>
               <text>历史成交</text>

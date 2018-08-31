@@ -159,7 +159,7 @@
   </view>
 </template>
 <!-- 明细-今日委托 -->
-<template>
+<template name="mxjrwt">
 <view class='jrwt'>
   <view class='mxNav'>
     <text>名称/代码</text>
