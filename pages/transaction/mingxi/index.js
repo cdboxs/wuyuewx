@@ -1,12 +1,16 @@
 // pages/transaction/mingxi/index.js
 let that;
+const app = new getApp();
+const base64 = require('../../utils/base64.js');
+const getSH = require('../../utils/computed.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    scrollheight: app.globalData.windowHeight,
+    
   },
 
   /**
@@ -17,6 +21,12 @@ Page({
     that.setData({
       mxid: options.mxid
     });
+    getSH.getScroolH('.mxTplOneS').exec(function (res) {
+      that.setData({
+        getscrollH: that.data.scrollheight - res[0].top
+      });
+    })
+    that.jrwtList();
   },
 
   /**
@@ -66,5 +76,41 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+  /*今日委托*/
+  jrwtList(){
+    let userInfo = wx.getStorageSync('userInfo');
+    if (userInfo) {
+      wx.request({
+        url: app.globalData.urlPre + '/api/getMyStockOrder',
+        header: {
+          'Authorization': 'Basic ' + base64.Base64.encode(userInfo.clientStr),
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        method: 'POST',
+        data: {
+          type:1,
+          page:1,
+          size:10,
+          starTime:'2018-7-13',
+          access_token: userInfo.getToken
+        },
+        success: function (res) {
+          console.log(res)
+          if (res.data.code == 200 && res.data.data != null) {
+            that.setData({
+              paySeachList: res.data.data.info
+            });
+          } else {
+            wx.showToast({
+              title: '暂无检测结果',
+              mask: true,
+              icon: 'none'
+            })
+          }
+        },
+        fail: function (res) { },
+      });
+    }
+  } 
 })

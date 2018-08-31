@@ -2,7 +2,7 @@
 <import src="../../template/index.wxml"/>
 <view wx:if="{{mxid==1}}">
 <!-- 当日委托 -->
-<template is="mxjrwt"></template>
+<template is="mxjrwt" data="{{...jrwt,getscrollH}}"></template>
 </view>
 <view wx:elif="{{mxid==2}}">
 <!-- 当日成交 -->
