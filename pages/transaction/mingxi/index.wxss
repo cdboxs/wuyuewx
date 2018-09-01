@@ -1,6 +1,6 @@
 /* pages/transaction/mingxi/index.wxss */
 .mxTplOne{
-  width:1005;
+  width:100%;
 }
 .mxTplOneNav{
   display: flex;
@@ -13,4 +13,49 @@
   width:25%;
   font-size: 28rpx;
   text-align: center;
+}
+.newmxTplOneNav text{
+  width:33.33%;
+}
+/* 明细-当日委托- 当日成交*/
+.jyData {
+  width: 98%;
+  margin: 0 auto;
+}
+
+.DataList,.newDataList {
+  padding: 10rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.DataList view,.newDataList view {
+  display: flex;
+  justify-content: space-between;
+}
+
+.DataList view text,.newDataList view text {
+  width: 25%;
+  color: #666;
+  padding: 10rpx 0;
+  font-size: 28rpx;
+  text-align: center;
+}
+.newDataList view text{
+ width: 25%;
+}
+.selectDate{
+  width:100%;
+  height: 120rpx;
+  font-size: 30rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.selectDate image{
+  width: 24rpx;
+  height: 24rpx;
+  margin-left:10rpx;
+}
+.picker{
+  height:30rpx;
 }

@@ -2,17 +2,88 @@
 <import src="../../template/index.wxml"/>
 <view wx:if="{{mxid==1}}">
 <!-- 当日委托 -->
-<template is="mxjrwt" data="{{...jrwt,getscrollH}}"></template>
+<template is="mxjrwt" data="{{jrwt,getscrollH}}"></template>
 </view>
 <view wx:elif="{{mxid==2}}">
 <!-- 当日成交 -->
-2
+<template is="mxjrcj" data="{{jrcj,getscrollH}}"></template>
 </view>
 <view wx:elif="{{mxid==3}}">
 <!-- 历史委托 -->
-3
+<view class='mxTplOne'>
+      <view class="selectDate">
+        <view class='startDate'>
+           <picker mode="date" value="{{endData}}"  bindchange="startDate">
+             <view>起始时间 <image src='../../image/date.png'></image></view>
+              <view class="picker"> {{startDate}}</view>
+           </picker>
+          
+        </view>
+        <view class='endDate'>
+          <picker mode="date" value="{{endData}}"  bindchange="endDate">
+             <view>截止时间<image src='../../image/date.png'></image></view>
+          </picker>
+          <view class="picker">{{endDate}}</view>
+        </view>
+      </view>
+
+      <view class='mxTplOneNav newmxTplOneNav'>
+        <text>名称/代码</text>
+        <text>委托价/时间</text>
+        <text>委托量/成交量</text>
+        <text>状态</text>
+      </view>
+      <scroll-view class='mxTplOneS'  scroll-y style='height:{{getscrolllisH}}px;' lower-threshold="5" bindscrolltolower="lswtMoreData">
+          <view class='jyData'>
+    
+            <view class='newDataList' wx:for="{{lswt}}" wx:key="{{key}}">
+              <view>
+                <text>{{item.name}}</text><text>{{item.price}}</text><text>{{item.num}}</text><text>{{item.isBuyFlag}}</text>
+              </view>
+              <view>
+                <text>{{item.code}}</text><text>{{item.createDate}}</text><text>{{item.total_num}}</text><text>{{item.statusFlag}}</text>
+              </view>
+            </view>
+          </view>
+      </scroll-view>
+  </view>
 </view>
 <view wx:elif="{{mxid==4}}">
 <!-- 历史成交 -->
-4
+<view class='mxTplOne'>
+      <view class="selectDate">
+        <view class='startDate'>
+           <picker mode="date" value="{{endData}}"  bindchange="startDate">
+             <view>起始时间 <image src='../../image/date.png'></image></view>
+              <view class="picker"> {{startDate}}</view>
+           </picker>
+          
+        </view>
+        <view class='endDate'>
+          <picker mode="date" value="{{endData}}"  bindchange="endDate">
+             <view>截止时间<image src='../../image/date.png'></image></view>
+          </picker>
+          <view class="picker">{{endDate}}</view>
+        </view>
+      </view>
+
+      <view class='mxTplOneNav newmxTplOneNav'>
+        <text>名称/代码</text>
+        <text>成交价/成交量</text>
+        <text>成交额/成交时间</text>
+      </view>
+      <scroll-view class='mxTplOneS'  scroll-y style='height:{{getscrolllisH}}px;' lower-threshold="5" bindscrolltolower="lscjMoreData">
+          <view class='jyData'>
+    
+            <view class='newDataList' wx:for="{{lscj}}" wx:key="{{key}}">
+              <view>
+                <text>{{item.name}}</text><text>{{item.price}}</text><text>{{item.total_price}}</text>
+              </view>
+              <view>
+                <text>{{item.code}}</text><text>{{item.total_num}}</text><text>{{item.createDate}}</text>
+              </view>
+            </view>
+          </view>
+      </scroll-view>
+  </view>
 </view>

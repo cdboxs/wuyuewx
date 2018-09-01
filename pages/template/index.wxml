@@ -167,8 +167,41 @@
     <text>委托量/成交量</text>
     <text>状态</text>
   </view>
-  <scroll-view class='mxTplOneS'  scroll-y style='height:{{getscrollH+48}}px;background:red;' lower-threshold="5" bindscrolltolower="xqjlMoreData">
-  {{jrwt}}
+  <scroll-view class='mxTplOneS'  scroll-y style='height:{{getscrollH}}px;' lower-threshold="5" bindscrolltolower="jrwtMoreData">
+  <view class='jyData'>
+ 
+        <view class='DataList' wx:for="{{jrwt}}" wx:key="{{key}}">
+          <view>
+            <text>{{item.name}}</text><text>{{item.price}}</text><text>{{item.num}}</text><text>{{item.isBuyFlag}}</text>
+          </view>
+          <view>
+            <text>{{item.code}}</text><text>{{item.createDate}}</text><text>{{item.total_num}}</text><text>{{item.statusFlag}}</text>
+          </view>
+        </view>
+      </view>
+  </scroll-view>
+</view>
+</template>
+<!-- 明细-今日成交 -->
+<template name="mxjrcj">
+<view class='mxTplOne'>
+  <view class='mxTplOneNav newmxTplOneNav'>
+    <text>名称/代码</text>
+    <text>成交价/成交量</text>
+    <text>成交额/成交时间</text>
+  </view>
+  <scroll-view class='mxTplOneS'  scroll-y style='height:{{getscrollH}}px;' lower-threshold="5" bindscrolltolower="jrcjMoreData">
+  <view class='jyData'>
+ 
+        <view class='newDataList' wx:for="{{jrcj}}" wx:key="{{key}}">
+          <view>
+            <text>{{item.name}}</text><text>{{item.price}}</text><text>{{item.total_price}}</text>
+          </view>
+          <view>
+            <text>{{item.code}}</text><text>{{item.total_num}}</text><text>{{item.createDate}}</text>
+          </view>
+        </view>
+      </view>
   </scroll-view>
 </view>
 </template>

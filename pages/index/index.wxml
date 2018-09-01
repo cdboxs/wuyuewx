@@ -4,11 +4,14 @@
   <input type='search' name="search" value='' bindinput='search' placeholder='明星姓名/编号'>
   <image src='../image/ico_search.png'></image>
   </input>
-  <view class='searchResult' style='display:{{searchStatus}};height:{{scrollviewHeight-27}}px'>
-    <view wx:for="{{searchList}}" wx:key="key">
-      <text>{{item.name}}</text><text>2{{item.starCode}}</text>
-    </view> 
-  </view>
+  <scroll-view class='searchResult'scroll-y lower-threshold="5" style='display:{{searchStatus}};height:{{searchH}}px' >
+    <block  wx:for="{{searchList}}" wx:key="key">
+
+      <view data-star_id='{{item.id}}' bindtap='goQuotation'>
+        <text>{{item.name}}</text><text>{{item.starCode}}</text>
+      </view>
+    </block>   
+  </scroll-view>
 </view>
 <view class='switch_nav'>
   <text class="{{currentTab==0?'active':''}}" data-current='0' bindtap='click_nav'>自选</text>

@@ -32,7 +32,16 @@ Page({
     });
     that.setData({
       paySeachShow: false,
-      second: 0
+      second: 0,
+      seachVal: '',
+      payPrice:'',
+      limit_down:'',
+      limit_up:'',
+      wudang: '',
+      wudangStatus: '',
+      mai: '',
+      maiStatus:'',
+      mxi:''
     });
     switch (e.currentTarget.dataset.current){
       case '1':
@@ -644,7 +653,6 @@ Page({
           access_token: userInfo.getToken
         },
         success: function (res) {
-          console.log(res);
           if (res.data.code == 200 && res.data.data != null) {
             that.setData({
               maiListData: res.data.data.list
@@ -668,7 +676,6 @@ Page({
     }
   },
   maiListMoreData(e) {
-    console.log(e.currentTarget.dataset.types);
     that.setData({
       cdPages: that.data.cdPages + 1
     });

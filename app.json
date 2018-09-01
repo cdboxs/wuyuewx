@@ -1,14 +1,14 @@
 {
   "pages": [
-    "pages/transaction/index/index",
     "pages/index/index",
     "pages/member/assets/index",
-    "pages/template/index",
     "pages/exercise/index",
     "pages/quotation/index",
     "pages/starSpace/index",
     "pages/components/dialog/index",
     "pages/newInformation/index",
+    "pages/transaction/index/index",
+    "pages/template/index",
     "pages/member/index/index",
     "pages/member/server/index",
     "pages/member/address/index",

@@ -3,6 +3,7 @@
 const app = getApp();
 const base64 = require('../utils/base64.js');
 const gettoken = require('../utils/token.js');
+const getSH = require('../utils/computed.js');
 let that;
 Page({
   data: {
@@ -57,6 +58,7 @@ Page({
     }
   },
   goQuotation: (e) => {
+    console.log(e);
       wx.navigateTo({
         url: '../quotation/index?stock_id=' + e.currentTarget.dataset.stock_id + '&star_id=' + e.currentTarget.dataset.star_id,
       })
@@ -79,6 +81,18 @@ Page({
     let getNewToken = gettoken.getToken();
    
 
+  },
+  onReady:function(){
+    wx.getSystemInfo({
+      success: function (e) {
+        getSH.getScroolH('.switch_nav').exec(function (res) {
+          console.log(e.windowHeight - res[0].top);
+          that.setData({
+            searchH: e.windowHeight - res[0].top
+          });
+        })
+      },
+    });
   },
   /**
     * 页面上拉触底事件的处理函数
