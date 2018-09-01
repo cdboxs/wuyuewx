@@ -99,11 +99,11 @@ function getListData(that,...item){
             forum: e.data.data.list
           });
         } else if (e.data.code = 200 && e.data.data == null) {
-          wx.showToast({
-            title: '暂无数据',
-            mask: true,
-            icon: 'none'
-          })
+          // wx.showToast({
+          //   title: '暂无数据',
+          //   mask: true,
+          //   icon: 'none'
+          // })
         }
       }
     })

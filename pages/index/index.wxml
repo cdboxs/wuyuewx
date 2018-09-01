@@ -7,7 +7,7 @@
   <scroll-view class='searchResult'scroll-y lower-threshold="5" style='display:{{searchStatus}};height:{{searchH}}px' >
     <block  wx:for="{{searchList}}" wx:key="key">
 
-      <view data-star_id='{{item.id}}' bindtap='goQuotation'>
+      <view data-star_id='{{item.id}}' data-stock_id="{{item.starCode}}" bindtap='goQuotation'>
         <text>{{item.name}}</text><text>{{item.starCode}}</text>
       </view>
     </block>   

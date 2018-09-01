@@ -162,8 +162,8 @@ Page({
         stockId: item[0].stockId
       },
       success: (e) => {
-
-        if (e.data.code == 200) {
+        console.log(e);
+        if (e.data.code == 200 && e.data.data !=null) {
           wx.setNavigationBarTitle({
             title: e.data.data.name + '[' + e.data.data.code + ']',
           })
@@ -176,6 +176,18 @@ Page({
             Qonel: e.data.data
           });
           wx.hideLoading();
+        }else{
+          wx.showToast({
+            title: '暂无此明星',
+            mask:true,
+            icon:'none'
+          });
+          setTimeout(()=>{
+            wx.switchTab({
+              url: '../index/index',
+            })
+          },1000);
+          
         }
       }
     });

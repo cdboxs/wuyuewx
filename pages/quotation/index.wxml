@@ -24,7 +24,7 @@
   <text>量：{{Qoner.liang}}秒</text>
 </view>
 
-<view class='quotation_three'>
+<!-- <view class='quotation_three'>
   <view class='three_nav'>
     <text style="{{threeSelected==1?'background:#76b5fc;color:#fff;':''}}" data-selected="1" bindtap='threeSwiper'>分时</text>
     <text style="{{threeSelected==2?'background:#76b5fc;color:#fff;':''}}" data-selected="2" bindtap='threeSwiper'>日K*成交额</text>
@@ -33,7 +33,7 @@
   <view class='three_detail' wx:if="{{threeSelected==1?true:false}}">1</view>
   <view class='three_detail' wx:if="{{threeSelected==2?true:false}}">2</view>
   <view class='three_detail' wx:if="{{threeSelected==3?true:false}}">3</view>
-</view>
+</view> -->
 
 
 <view class='quotation_four'>
@@ -75,11 +75,11 @@
 
 
   <view class='subTabBar'>
-    <view>
+    <view bindtap='mairu'>
       <image src='../image/hqnav1.png'></image>
       <text>买入</text>
     </view>
-    <view>
+    <view bindtap='zhuanrang'>
       <image src='../image/hqnav2.png'></image>
       <text>转让</text>
     </view>
