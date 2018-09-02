@@ -30,8 +30,7 @@ Page({
           param: res.detail.value,
         },
         success: e => {
-          if (e.data.code == 200 && e.data.data!=null) { 
-            console.log(e)         
+          if (e.data.code == 200 && e.data.data!=null) {        
             that.setData({
               searchList: e.data.data.info,
               searchStatus: 'block'
@@ -79,7 +78,9 @@ Page({
 
   onShow:function(){
     let getNewToken = gettoken.getToken();
-   
+    let starInfo = wx.getStorageSync('starInfo');
+    starInfo.isMaiRuUrl = '';
+    wx.setStorageSync('starInfo', starInfo);
 
   },
   onReady:function(){

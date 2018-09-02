@@ -5,6 +5,7 @@ const base64 = require('../utils/base64.js');
 const getUserInfo = require('../utils/login.js');
 const quotationStar = require('../utils/starInfo.js');
 
+
 Page({
 
   /**
@@ -36,6 +37,50 @@ Page({
     wx.navigateTo({
       url: '../newInformation/index?id=' + e.currentTarget.dataset.id + '&starId=' + that.data.starId,
     })
+  },
+  mairu(){
+    wx.showLoading({
+      title: '正在加载',
+      mask:true,
+      icon:'none'
+    })
+    let starInfo = wx.getStorageSync('starInfo');
+    wx.request({
+      url: app.globalData.urlPre + '/api/getStockByParam',
+      header: {
+
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      data: {
+        type: 1,
+        param: starInfo.code,
+
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.code == 200 && res.data.data != null) {
+          starInfo.isMaiRuUrl = res.data.data.info[0];
+          wx.setStorageSync('starInfo', starInfo);
+        } else {
+          wx.showToast({
+            title: '暂无检测结果',
+            mask: true,
+            icon: 'none'
+          })
+        }
+      },
+      fail: function (res) { },
+    });
+  
+   
+    setTimeout(()=>{
+      wx.switchTab({
+        url: '../transaction/index/index',
+      })
+      wx.hideLoading();
+    },800);
+    
   },
   /**
    * 生命周期函数--监听页面加载
@@ -171,6 +216,7 @@ Page({
           starInfo.code = e.data.data.code;
           starInfo.stockId = that.data.stockId;
           starInfo.starId = that.data.starId;
+          starInfo.isMaiRuUrl = '';
           wx.setStorageSync('starInfo', starInfo);
           that.setData({
             Qonel: e.data.data

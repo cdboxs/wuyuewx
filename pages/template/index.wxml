@@ -58,7 +58,7 @@
         <text>cdboxs、</text>
         <text>null、</text>
       </view>
-      <view class='fd-list'>
+      <!-- <view class='fd-list'>
         <view>
           <text class='blue'>丽水按</text>回复
           <text class='blue'>cdboxs</text>:
@@ -74,7 +74,7 @@
           <text class='blue'>cdboxs</text>:
           <text>回复的内容</text>
         </view>
-      </view>
+      </view> -->
     </view>
   </view>
 </template>

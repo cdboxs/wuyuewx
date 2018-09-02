@@ -85,6 +85,7 @@ Page({
    */
   onLoad: function (options) {
     that=this;
+   
     /*scroll高度计算：买入scroll 明细scroll*/ 
     getSH.getScroolH('.maiH').exec(function (res) {
       that.setData({
@@ -103,6 +104,7 @@ Page({
     })
   /*scroll高度计算：买入scroll 明细scroll*/
     that.maiListData(1);
+
     
   },
 
@@ -117,7 +119,36 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+  that=this;
+    let starInfo = wx.getStorageSync('starInfo');
+    if (starInfo.isMaiRuUrl!=""){
+   
+      let es={
+        currentTarget:{
+          dataset:{
+            payname: starInfo.isMaiRuUrl
+          }
+        }
+      }
+      console.log(es);
+      that.assginValue(es);
+    }else{
+      that.setData({
+        paySeachShow: false,
+        second: 0,
+        seachVal: '',
+        payPrice: '',
+        limit_down: '',
+        limit_up: '',
+        wudang: '',
+        wudangStatus: '',
+        mai: '',
+        maiStatus: '',
+        mxi: ''
+      });
+    }
     
+
   },
 
   /**
@@ -183,6 +214,7 @@ Page({
               that.setData({
                 paySeachList: res.data.data.info
               });
+              
             } else {
               wx.showToast({
                 title: '暂无检测结果',
@@ -256,6 +288,7 @@ Page({
 
   },
   assginValue(e){
+    console.log(e);
     that=this;
     that.setData({
       seachVal: e.currentTarget.dataset.payname.name + '[' + e.currentTarget.dataset.payname.code+']',

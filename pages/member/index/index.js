@@ -47,7 +47,10 @@ Page({
           maskState: true
         });
       }
-    })
+    });
+    let starInfo = wx.getStorageSync('starInfo');
+    starInfo.isMaiRuUrl = '';
+    wx.setStorageSync('starInfo', starInfo);
 
   },
 

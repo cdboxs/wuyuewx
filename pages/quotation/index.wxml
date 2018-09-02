@@ -23,7 +23,7 @@
   <text>流通时间：{{Qoner.liutongshijian}}</text>
   <text>量：{{Qoner.liang}}秒</text>
 </view>
-
+<!-- 报表 -->
 <!-- <view class='quotation_three'>
   <view class='three_nav'>
     <text style="{{threeSelected==1?'background:#76b5fc;color:#fff;':''}}" data-selected="1" bindtap='threeSwiper'>分时</text>
