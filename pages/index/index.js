@@ -57,7 +57,7 @@ Page({
     }
   },
   goQuotation: (e) => {
-    console.log(e);
+    //console.log(e);
       wx.navigateTo({
         url: '../quotation/index?stock_id=' + e.currentTarget.dataset.stock_id + '&star_id=' + e.currentTarget.dataset.star_id,
       })
@@ -87,7 +87,6 @@ Page({
     wx.getSystemInfo({
       success: function (e) {
         getSH.getScroolH('.switch_nav').exec(function (res) {
-          console.log(e.windowHeight - res[0].top);
           that.setData({
             searchH: e.windowHeight - res[0].top
           });

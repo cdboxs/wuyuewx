@@ -58,7 +58,6 @@ Page({
 
       },
       success: function (res) {
-        console.log(res)
         if (res.data.code == 200 && res.data.data != null) {
           starInfo.isMaiRuUrl = res.data.data.info[0];
           wx.setStorageSync('starInfo', starInfo);
@@ -207,7 +206,6 @@ Page({
         stockId: item[0].stockId
       },
       success: (e) => {
-        console.log(e);
         if (e.data.code == 200 && e.data.data !=null) {
           wx.setNavigationBarTitle({
             title: e.data.data.name + '[' + e.data.data.code + ']',
